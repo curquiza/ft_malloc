@@ -1,8 +1,7 @@
 #include "dyn_alloc.h"
 
-void	*malloc(size_t size)
+void	*ft_malloc(size_t size)
 {
-	(void)size;
-	write(1, "MALLOC\n", 7);
+	ft_putnbr2("MALLOC - size ", size);
 	return ((void *)"coco");
 }
