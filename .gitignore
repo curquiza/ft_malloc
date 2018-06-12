@@ -3,3 +3,4 @@ objs
 **/*.swp
 a.out
 libft_malloc_*
+libft_malloc.so
