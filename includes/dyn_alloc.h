@@ -19,7 +19,10 @@ void	ft_putendl2_fd(char *s1, char *s2, int fd);
 
 size_t	ft_strlen(const char *s);
 
-// void	*ft_malloc(size_t size);
+/*
+** MALLOC
+*/
+void	*ft_malloc(size_t size);
 void	*malloc(size_t size);
 
 #endif
