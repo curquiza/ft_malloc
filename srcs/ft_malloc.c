@@ -1,7 +1,8 @@
-#include "alloc_dym.h"
+#include "dyn_alloc.h"
 
-void	*ft_malloc(size_t size)
+void	*malloc(size_t size)
 {
 	(void)size;
+	write(1, "MALLOC\n", 7);
 	return ((void *)"coco");
 }

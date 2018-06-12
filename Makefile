@@ -9,6 +9,9 @@ CC = gcc -Wall -Wextra -Werror
 
 C_DIR = srcs
 C_FILES = $(addprefix $(C_DIR)/, \
+			tools_display_nbr.c \
+			tools_display_str.c \
+			tools_str.c \
 			ft_malloc.c)
 
 O_DIR = objs
