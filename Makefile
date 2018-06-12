@@ -4,7 +4,6 @@ else
 	NAME = libft_malloc_$(HOSTTYPE).so
 endif
 
-#CC = gcc
 CC = gcc -Wall -Wextra -Werror
 #CC = gcc -Wall -Wextra -Werror -g -fsanitize=address
 
