@@ -4,7 +4,6 @@
 
 int		main(void)
 {
-	printf("%d", getpagesize());		
-	malloc(2);
+	printf("%d", getpagesize());
 	return (0);
 }
