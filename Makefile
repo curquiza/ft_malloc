@@ -1,8 +1,9 @@
-ifndef HOSTTYPE
-	NAME = libft_malloc_$(shell uname -m)_$(shell uname -s).so
-else
-	NAME = libft_malloc_$(HOSTTYPE).so
+ifeq ($(HOSTTYPE),)
+	HOSTTYPE := $(shell uname -m)_$(shell uname -s)
 endif
+
+NAME = libft_malloc_$(HOSTTYPE).so
+LINK_NAME = libft_malloc.so
 
 CC = gcc -Wall -Wextra -Werror
 #CC = gcc -Wall -Wextra -Werror -g -fsanitize=address
@@ -31,6 +32,10 @@ $(NAME) : $(O_FILES)
 	@$(CC) $(O_FILES) -shared -o $@
 	@echo "\033[1;31m-- EXEC ------------------------\033[0m"
 	@printf  "%-45s\033[1;32m%s\033[0m\n" "Make $@" "OK"
+	@rm -f $(LINK_NAME)
+	@ln -s $@ $(LINK_NAME)
+	@echo "\033[1;31m-- LINK ------------------------\033[0m"
+	@printf  "%-45s\033[1;32m%s\033[0m\n" "Link created" "OK"
 
 $(O_DIR)/%.o: $(C_DIR)/%.c $(H_DIR)
 	@mkdir -p $(O_DIR)
@@ -42,6 +47,7 @@ clean :
 
 fclean : clean
 	@rm -rf $(NAME)
+	@rm -rf $(LINK_NAME)
 
 re : fclean all
 
