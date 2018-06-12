@@ -45,4 +45,7 @@ fclean : clean
 
 re : fclean all
 
+main :
+	$(CC) main.c $(INCL) $(NAME)
+
 .PHONY : clean all fclean re
