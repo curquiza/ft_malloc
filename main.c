@@ -4,6 +4,6 @@
 
 int		main(void)
 {
-	printf("%d", getpagesize());		
+	printf("%d", getpagesize());
 	return (0);
 }
