@@ -1,9 +1,7 @@
 ifndef HOSTTYPE
-	# NAME = libft_malloc_ + `uname -m` + _ + `uname -s` + .so
-	NAME = KO
+	NAME = libft_malloc_$(shell uname -m)_$(shell uname -s).so
 else
-	NAME = OK
-	# NAME = libft_malloc_$HOSTTYPE + .so
+	NAME = libft_malloc_$(HOSTTYPE).so
 endif
 
 #CC = gcc
