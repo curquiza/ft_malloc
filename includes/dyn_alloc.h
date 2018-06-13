@@ -5,6 +5,8 @@
 # include <sys/mman.h>
 # include <stdio.h>
 
+# define LITTLE_HEXA_BASE "0123456789abcdef"
+
 enum	e_status
 {
 	FREE,
@@ -35,6 +37,8 @@ void	ft_putendl(char const *s);
 void	ft_putendl2(char *s1, char *s2);
 void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl2_fd(char *s1, char *s2, int fd);
+void	ft_display_addr(unsigned long long int n);
+void	ft_display_hex_byte(unsigned char c);
 
 size_t	ft_strlen(const char *s);
 

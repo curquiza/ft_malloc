@@ -34,9 +34,11 @@ void	display_all_blocks(t_block *blocks)
 	while (blocks)
 	{
 		ft_putnbr2("i = ", i);
-		ft_putnbr2("Size of header = ", sizeof_header());
-		ft_putnbr2("Size of block = ", blocks->size);
-		ft_putendl2("Status = ", blocks->status == FREE ? "FREE" : "ALLOC");
+		ft_putstr("address = ");
+		ft_display_addr((unsigned long long)blocks);
+		ft_putnbr2("size of header = ", sizeof_header());
+		ft_putnbr2("size of block = ", blocks->size);
+		ft_putendl2("status = ", blocks->status == FREE ? "FREE" : "ALLOC");
 		ft_putendl("---------");
 		blocks = blocks->next;
 		i++;
@@ -69,6 +71,7 @@ void	*ft_malloc(size_t size)
 
 	display_all_blocks(g_bases.tiny);
 	ft_putendl("--- END MALLOC ------------------\n");
+
 	return (g_bases.tiny);
 }
 
