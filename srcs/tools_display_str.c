@@ -1,10 +1,5 @@
 #include "dyn_alloc.h"
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
 void	ft_putstr(char const *s)
 {
 	if (s)
@@ -18,6 +13,13 @@ void	ft_putendl(char const *s)
 		write(1, s, ft_strlen(s));
 		write(1, "\n", 1);
 	}
+}
+
+void	ft_putendl2(char *s1, char *s2)
+{
+	ft_putstr(s1);
+	ft_putstr(s2);
+	write(1, "\n", 1);
 }
 
 void	ft_putstr_fd(char const *s, int fd)

@@ -1,6 +1,11 @@
 #include "dyn_alloc.h"
 
-void	ft_putnbr(int n)
+static void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void		ft_putnbr(int n)
 {
 	if (n / 10 == 0 && n % 10 < 0)
 	{
@@ -19,7 +24,7 @@ void	ft_putnbr(int n)
 	}
 }
 
-void	ft_putnbr2(char *s, int nbr)
+void		ft_putnbr2(char *s, int nbr)
 {
 	ft_putstr(s);
 	ft_putnbr(nbr);
