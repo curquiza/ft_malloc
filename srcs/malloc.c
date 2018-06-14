@@ -44,11 +44,16 @@ bool	is_available_block(t_block *block, size_t size)
 	return (block->size >= size ? true : false);
 }
 
-t_block	*find_or_extend(t_block *blocks, size_t size)
+t_block	*find_or_extend(t_block **blocks, size_t size)
 {
 	t_block		*place;
 
-	place = find_available_or_last_block(blocks, size);
+	if (!*blocks)
+	{
+		*blocks = extend_heap(size, *blocks);
+		return(*blocks);
+	}
+	place = find_available_or_last_block(*blocks, size);
 	if (is_available_block(place, size) == true)
 		return (place);
 	else
@@ -84,24 +89,45 @@ t_block	*find_last_block(t_block *blocks)
 
 void	*ft_malloc(size_t size)
 {
+	t_block		*alloc_b;
+
 	ft_putnbr2("MALLOC - size ", size);
 	if (!g_bases.tiny)
 	{
 		ft_putendl("First init");
-		g_bases.tiny = extend_heap(size, NULL);
+		alloc_b = find_or_extend(&g_bases.tiny, size);
 	}
 	else
 	{
 		ft_putendl("Next init");
-		t_block *last = find_last_block(g_bases.tiny);
-		extend_heap(size, last);
+		alloc_b = find_or_extend(&g_bases.tiny, size);
 	}
-
 	display_all_blocks(g_bases.tiny);
 	ft_putendl("--- END MALLOC ------------------\n");
 
-	return (g_bases.tiny);
+	return ((unsigned char *)alloc_b + sizeof_header());
 }
+
+// void	*ft_malloc(size_t size)
+// {
+// 	ft_putnbr2("MALLOC - size ", size);
+// 	if (!g_bases.tiny)
+// 	{
+// 		ft_putendl("First init");
+// 		g_bases.tiny = extend_heap(size, NULL);
+// 	}
+// 	else
+// 	{
+// 		ft_putendl("Next init");
+// 		t_block *last = find_last_block(g_bases.tiny);
+// 		extend_heap(size, last);
+// 	}
+
+// 	display_all_blocks(g_bases.tiny);
+// 	ft_putendl("--- END MALLOC ------------------\n");
+
+// 	return (g_bases.tiny);
+// }
 
 void	*malloc(size_t size)
 {
