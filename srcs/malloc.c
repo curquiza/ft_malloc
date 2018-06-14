@@ -80,28 +80,16 @@ void	display_all_blocks(t_block *blocks)
 	}
 }
 
-t_block	*find_last_block(t_block *blocks)
-{
-	while (blocks && blocks->next)
-		blocks = blocks->next;
-	return (blocks);
-}
-
 void	*ft_malloc(size_t size)
 {
 	t_block		*alloc_b;
 
 	ft_putnbr2("MALLOC - size ", size);
 	if (!g_bases.tiny)
-	{
 		ft_putendl("First init");
-		alloc_b = find_or_extend(&g_bases.tiny, size);
-	}
 	else
-	{
 		ft_putendl("Next init");
-		alloc_b = find_or_extend(&g_bases.tiny, size);
-	}
+	alloc_b = find_or_extend(&g_bases.tiny, size);
 	display_all_blocks(g_bases.tiny);
 	ft_putendl("--- END MALLOC ------------------\n");
 
