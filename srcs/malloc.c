@@ -24,22 +24,11 @@ t_block	*extend_heap(size_t size, t_block *previous)
 	return (b);
 }
 
-// t_block	*find_available_block(t_block *blocks, size_t size)
-// {
-// 	while (blocks)
-// 	{
-// 		if (blocks->size >= size)
-// 			return (blocks);
-// 		blocks = blocks->next;
-// 	}
-// 	return (NULL);
-// }
-
 t_block *find_available_or_last_block(t_block *blocks, size_t size)
 {
 	while (blocks)
 	{
-		if (blocks->size >= size)
+		if (blocks->size >= size && blocks->status == FREE)
 			return (blocks);
 		if (!blocks->next)
 			break ;
@@ -78,7 +67,7 @@ t_block	*split_block(t_block *block, size_t size)
 	new_block = (t_block *)((unsigned char *)block + sizeof_header() + size);
 	new_block->size = total_size - size - sizeof_header() * 2;
 	new_block->status = FREE;
-	new_block->next = NULL;
+	new_block->next = block->next;
 	block->size = size;
 	block->status = ALLOC;
 	block->next = new_block;
@@ -121,7 +110,7 @@ void	*ft_malloc(size_t size)
 
 	if ((int)size < 0)
 		return (NULL);
-	ft_putnbr2("MALLOC - size ", size); // debug
+	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", size); // debug
 	ft_putendl(!g_bases.tiny ? "First init" : "Next init"); // debug
 	alloc_b = find_or_extend(&g_bases.tiny, size);
 	allocate_block(alloc_b, size);
