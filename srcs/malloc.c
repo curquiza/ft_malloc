@@ -69,7 +69,7 @@ t_block	*split_block(t_block *block, size_t size)
 	new_block->status = FREE;
 	new_block->next = block->next;
 	block->size = size;
-	block->status = ALLOC;
+	// block->status = ALLOC;
 	block->next = new_block;
 	return(block);
 }
@@ -87,6 +87,7 @@ void	display_all_blocks(t_block *blocks) // debug
 		ft_display_addr((unsigned long long)blocks);
 		ft_putnbr2("size of header = ", sizeof_header());
 		ft_putnbr2("size of block (without header) = ", blocks->size);
+		ft_putnbr2("size totale = ", blocks->size + sizeof_header());
 		ft_putendl2("status = ", blocks->status == FREE ? "FREE" : "ALLOC");
 		ft_putendl("---------");
 		blocks = blocks->next;
@@ -96,10 +97,9 @@ void	display_all_blocks(t_block *blocks) // debug
 
 void	allocate_block(t_block *block, size_t size)
 {
-	if (size == block->size)
-		block->status = ALLOC;
-	else
+	if (block->size > size + sizeof_header()) //j'ai la place de mettre un header si je split
 		split_block(block, size);
+	block->status = ALLOC;
 	if (size > block->size) // debug
 		ft_putendl("Split size error"); // debug
 }
