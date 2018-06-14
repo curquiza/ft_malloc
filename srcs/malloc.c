@@ -10,13 +10,13 @@ t_block	*extend_heap(size_t size, t_block *previous)
 
 	size_to_map = sizeof_header() + size;
 	mmap_size = ((size_to_map  / page_size()) + 1) * page_size();
-	ft_putendl("EXTEND HEAP");
-	ft_putnbr2("Size needed = size + sizeof_header = ", size_to_map);
-	ft_putnbr2("mmap_size = ", mmap_size);
+	ft_putendl("EXTEND HEAP"); // debug
+	ft_putnbr2("Size needed = size + sizeof_header = ", size_to_map); // debug
+	ft_putnbr2("mmap_size = ", mmap_size); // debug
 	b = mmap(0, size_to_map, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
 	b->size = mmap_size - sizeof_header();
-	if (size > b->size)
-		ft_putendl("Extend size error !");
+	if (size > b->size) // debug
+		ft_putendl("Extend size error !"); // debug
 	b->status = FREE;
 	b->next = NULL;
 	if (previous)
@@ -69,15 +69,23 @@ t_block	*find_or_extend(t_block **blocks, size_t size)
 		return (extend_heap(size, place));
 }
 
-// t_block	*split_block(t_block *block, size_t size)
-// {
-// 	t_block		*new_block;
+t_block	*split_block(t_block *block, size_t size)
+{
+	t_block		*new_block;
+	size_t		total_size;
 
-// 	new_block = (unsigned char *)
-// 	block->size = size;
-// }
+	total_size = block->size + sizeof_header();
+	new_block = (t_block *)((unsigned char *)block + sizeof_header() + size);
+	new_block->size = total_size - size - sizeof_header() * 2;
+	new_block->status = FREE;
+	new_block->next = NULL;
+	block->size = size;
+	block->status = ALLOC;
+	block->next = new_block;
+	return(block);
+}
 
-void	display_all_blocks(t_block *blocks)
+void	display_all_blocks(t_block *blocks) // debug
 {
 	int		i;
 
@@ -97,43 +105,30 @@ void	display_all_blocks(t_block *blocks)
 	}
 }
 
+void	allocate_block(t_block *block, size_t size)
+{
+	if (size == block->size)
+		block->status = ALLOC;
+	else
+		split_block(block, size);
+	if (size > block->size) // debug
+		ft_putendl("Split size error"); // debug
+}
+
 void	*ft_malloc(size_t size)
 {
 	t_block		*alloc_b;
 
-	ft_putnbr2("MALLOC - size ", size);
-	if (!g_bases.tiny)
-		ft_putendl("First init");
-	else
-		ft_putendl("Next init");
+	ft_putnbr2("MALLOC - size ", size); // debug
+	ft_putendl(!g_bases.tiny ? "First init" : "Next init"); // debug
 	alloc_b = find_or_extend(&g_bases.tiny, size);
-	ft_putendl("");
-	display_all_blocks(g_bases.tiny);
-	ft_putendl("--- END MALLOC ------------------\n");
+	allocate_block(alloc_b, size);
+	ft_putendl(""); // debug
+	display_all_blocks(g_bases.tiny); // debug
+	ft_putendl("--- END MALLOC ------------------\n"); // debug
 
 	return ((unsigned char *)alloc_b + sizeof_header());
 }
-
-// void	*ft_malloc(size_t size)
-// {
-// 	ft_putnbr2("MALLOC - size ", size);
-// 	if (!g_bases.tiny)
-// 	{
-// 		ft_putendl("First init");
-// 		g_bases.tiny = extend_heap(size, NULL);
-// 	}
-// 	else
-// 	{
-// 		ft_putendl("Next init");
-// 		t_block *last = find_last_block(g_bases.tiny);
-// 		extend_heap(size, last);
-// 	}
-
-// 	display_all_blocks(g_bases.tiny);
-// 	ft_putendl("--- END MALLOC ------------------\n");
-
-// 	return (g_bases.tiny);
-// }
 
 void	*malloc(size_t size)
 {
