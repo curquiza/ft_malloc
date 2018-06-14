@@ -15,6 +15,46 @@ t_block	*extend_heap(size_t size, t_block *previous)
 	return (b);
 }
 
+// t_block	*find_available_block(t_block *blocks, size_t size)
+// {
+// 	while (blocks)
+// 	{
+// 		if (blocks->size >= size)
+// 			return (blocks);
+// 		blocks = blocks->next;
+// 	}
+// 	return (NULL);
+// }
+
+t_block *find_available_or_last_block(t_block *blocks, size_t size)
+{
+	while (blocks)
+	{
+		if (blocks->size >= size)
+			return (blocks);
+		if (!blocks->next)
+			break ;
+		blocks = blocks->next;
+	}
+	return (blocks);
+}
+
+bool	is_available_block(t_block *block, size_t size)
+{
+	return (block->size >= size ? true : false);
+}
+
+t_block	*find_or_extend(t_block *blocks, size_t size)
+{
+	t_block		*place;
+
+	place = find_available_or_last_block(blocks, size);
+	if (is_available_block(place, size) == true)
+		return (place);
+	else
+		return (extend_heap(size, place));
+}
+
 void	display_all_blocks(t_block *blocks)
 {
 	int		i;
@@ -54,8 +94,6 @@ void	*ft_malloc(size_t size)
 	{
 		ft_putendl("Next init");
 		t_block *last = find_last_block(g_bases.tiny);
-		if (last == NULL)
-			ft_putendl("last est NULL");
 		extend_heap(size, last);
 	}
 

@@ -4,6 +4,7 @@
 # include <unistd.h>
 # include <sys/mman.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 # define LITTLE_HEXA_BASE "0123456789abcdef"
 
