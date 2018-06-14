@@ -53,7 +53,6 @@ int		page_size(void);
 /*
 ** MALLOC
 */
-void	*ft_malloc(size_t size);
-// void	*malloc(size_t size);
+void	*malloc(size_t size);
 
 #endif

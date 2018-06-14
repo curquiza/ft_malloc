@@ -104,7 +104,7 @@ void	allocate_block(t_block *block, size_t size)
 		ft_putendl("Split size error"); // debug
 }
 
-void	*ft_malloc(size_t size)
+void	*malloc(size_t size)
 {
 	t_block		*alloc_b;
 
@@ -120,8 +120,3 @@ void	*ft_malloc(size_t size)
 
 	return ((unsigned char *)alloc_b + sizeof_header());
 }
-
-// void	*malloc(size_t size)
-// {
-// 	return (ft_malloc(size));
-// }
