@@ -42,6 +42,9 @@ void	ft_display_hex_byte(unsigned char c);
 
 size_t	ft_strlen(const char *s);
 
+int		sizeof_header(void);
+int		page_size(void);
+
 /*
 ** MALLOC
 */

@@ -14,6 +14,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 			tools_display_str.c \
 			tools_display_hexa.c \
 			tools_str.c \
+			tools_basics.c \
 			malloc.c)
 
 O_DIR = objs

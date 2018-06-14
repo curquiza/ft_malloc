@@ -2,16 +2,6 @@
 
 t_base	g_bases = { NULL, NULL, NULL };
 
-int		sizeof_header(void)
-{
-	return (sizeof(t_block));
-}
-
-int		page_size(void)
-{
-	return (getpagesize());
-}
-
 t_block	*extend_heap(size_t size, t_block *previous)
 {
 	t_block	*b;
