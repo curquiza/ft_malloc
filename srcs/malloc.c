@@ -119,6 +119,8 @@ void	*ft_malloc(size_t size)
 {
 	t_block		*alloc_b;
 
+	if ((int)size < 0)
+		return (NULL);
 	ft_putnbr2("MALLOC - size ", size); // debug
 	ft_putendl(!g_bases.tiny ? "First init" : "Next init"); // debug
 	alloc_b = find_or_extend(&g_bases.tiny, size);
@@ -130,7 +132,7 @@ void	*ft_malloc(size_t size)
 	return ((unsigned char *)alloc_b + sizeof_header());
 }
 
-void	*malloc(size_t size)
-{
-	return (ft_malloc(size));
-}
+// void	*malloc(size_t size)
+// {
+// 	return (ft_malloc(size));
+// }
