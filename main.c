@@ -27,20 +27,33 @@ void	test1(void)
 	}
 }
 
+void	malloc_test(size_t size)
+{
+	size_t	i;
+	char	*addr;
+
+	addr = malloc(size);
+	i = 0;
+	while (i < size)
+	{
+		addr[i] = 'c';
+		i++;
+	}
+}
+
 int		main(void)
 {
 	// char * a = malloc(-1);(void)a;
-	// char * b = malloc(0);(void)b;
 
-	// char * a = malloc(255);(void)a;
-	// char * b = malloc(4100); (void)b;
-	// char * c = malloc(12); (void)c;
-	// char * d = malloc(0); (void)d;
-	// char * e = malloc(0); (void)e;
-	// char * f = malloc(20); (void)f;
+	malloc_test(255);
+	malloc_test(4100);
+	// malloc_test(12);
+	// malloc_test(0);
+	// malloc_test(0);
+	// malloc_test(20);
 
 	// test0();
-	test1();
+	// test1();
 
 	// while(1);
 	return (0);

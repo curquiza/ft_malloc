@@ -10,13 +10,13 @@ t_block	*extend_heap(size_t size, t_block *previous)
 
 	size_to_map = sizeof_header() + size;
 	mmap_size = ((size_to_map  / page_size()) + 1) * page_size();
-	ft_putendl("EXTEND HEAP"); // debug
-	ft_putnbr2("Size needed = size + sizeof_header = ", size_to_map); // debug
-	ft_putnbr2("mmap_size = ", mmap_size); // debug
+	// ft_putendl("EXTEND HEAP"); // debug
+	// ft_putnbr2("Size needed = size + sizeof_header = ", size_to_map); // debug
+	// ft_putnbr2("mmap_size = ", mmap_size); // debug
 	b = mmap(0, size_to_map, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
 	b->size = mmap_size - sizeof_header();
-	if (size > b->size) // debug
-		ft_putendl("Extend size error !"); // debug
+	// if (size > b->size) // debug
+		// ft_putendl("Extend size error !"); // debug
 	b->status = FREE;
 	b->next = NULL;
 	if (previous)
@@ -100,8 +100,8 @@ void	allocate_block(t_block *block, size_t size)
 	if (block->size > size + sizeof_header()) //j'ai la place de mettre un header si je split
 		split_block(block, size);
 	block->status = ALLOC;
-	if (size > block->size) // debug
-		ft_putendl("Split size error"); // debug
+	// if (size > block->size) // debug
+		// ft_putendl("Split size error"); // debug
 }
 
 void	*malloc(size_t size)
@@ -111,7 +111,7 @@ void	*malloc(size_t size)
 	if ((int)size < 0)
 		return (NULL);
 	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", size); // debug
-	ft_putendl(!g_bases.tiny ? "First init" : "Next init"); // debug
+	// ft_putendl(!g_bases.tiny ? "First init" : "Next init"); // debug
 	alloc_b = find_or_extend(&g_bases.tiny, size);
 	allocate_block(alloc_b, size);
 	ft_putendl(""); // debug
