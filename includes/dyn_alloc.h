@@ -18,6 +18,13 @@ enum	e_status
 	ALLOC
 };
 
+enum	e_type
+{
+	TINY,
+	SMALL,
+	LARGE
+};
+
 typedef struct	s_block
 {
 	enum e_status	status;
@@ -27,6 +34,7 @@ typedef struct	s_block
 
 typedef struct	s_base
 {
+	e_type	type;
 	t_block	*tiny;
 	t_block	*small;
 	t_block	*large;

@@ -1,6 +1,6 @@
 #include "dyn_alloc.h"
 
-t_base	g_bases = { NULL, NULL, NULL };
+t_base	g_bases = { TINY, NULL, NULL, NULL };
 
 t_block	*extend_heap(size_t size, t_block *previous)
 {
@@ -104,12 +104,22 @@ void	allocate_block(t_block *block, size_t size)
 		// ft_putendl("Split size error"); // debug
 }
 
+e_type	define_type(size_t size)
+{
+	if (size <= TINY_MAX)
+		return (TINY);
+	if (size <= SMALL_MAX)
+		return (SMALL);
+	return (LARGE);
+}
+
 void	*malloc(size_t size)
 {
 	t_block		*alloc_b;
 
 	if ((int)size < 0)
 		return (NULL);
+	define_type(size);
 	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", size); // debug
 	// ft_putendl(!g_bases.tiny ? "First init" : "Next init"); // debug
 	alloc_b = find_or_extend(&g_bases.tiny, size);
