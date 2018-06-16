@@ -41,7 +41,7 @@ typedef struct	s_zone
 	t_block		*tiny;
 	t_block		*small;
 	t_block		*large;
-	t_block		*current;
+	t_block		**current;
 }				t_zone;
 
 /*

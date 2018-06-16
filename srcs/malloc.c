@@ -1,6 +1,6 @@
 #include "dyn_alloc.h"
 
-t_zone	g_zone = { TINY, NULL, NULL, NULL, NULL };
+t_zone	g_zone = { TINY, NULL, NULL, NULL, &g_zone.tiny };
 
 t_block	*extend_heap(size_t size, t_block *previous)
 {
@@ -108,18 +108,21 @@ void	type_initialization(size_t size)
 {
 	if (size <= TINY_MAX)
 	{
+		ft_putendl("TINY"); // debug
 		g_zone.type = TINY;
-		g_zone.current = g_zone.tiny;
+		g_zone.current = &g_zone.tiny;
 	}
 	else if (size <= SMALL_MAX)
 	{
+		ft_putendl("SMALL"); // debug
 		g_zone.type = SMALL;
-		g_zone.current = g_zone.small;
+		g_zone.current = &g_zone.small;
 	}
 	else
 	{
+		ft_putendl("LARGE"); // debug
 		g_zone.type = LARGE;
-		g_zone.current = g_zone.large;
+		g_zone.current = &g_zone.large;
 	}
 }
 
@@ -129,13 +132,13 @@ void	*malloc(size_t size)
 
 	if ((int)size < 0)
 		return (NULL);
-	type_initialization(size);
 	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", size); // debug
+	type_initialization(size);
 	// ft_putendl(!g_zone.current ? "First init" : "Next init"); // debug
-	alloc_b = find_or_extend(&g_zone.current, size);
+	alloc_b = find_or_extend(g_zone.current, size);
 	allocate_block(alloc_b, size);
 	ft_putendl(""); // debug
-	display_all_blocks(g_zone.current); // debug
+	display_all_blocks(*g_zone.current); // debug
 	ft_putendl("--- END MALLOC ------------------\n"); // debug
 
 	return ((unsigned char *)alloc_b + sizeof_header());

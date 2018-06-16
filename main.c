@@ -46,7 +46,13 @@ int		main(void)
 	// char * a = malloc(-1);(void)a;
 
 	malloc_test(255);
+	malloc_test(300);
+	malloc_test(500);
+	malloc_test(256);
 	malloc_test(4100);
+	malloc_test(1220);
+	malloc_test(1000);
+	malloc_test(1);
 	// malloc_test(12);
 	// malloc_test(0);
 	// malloc_test(0);
