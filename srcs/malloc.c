@@ -1,6 +1,6 @@
 #include "dyn_alloc.h"
 
-t_base	g_bases = { TINY, NULL, NULL, NULL };
+t_zone	g_zone = { TINY, NULL, NULL, NULL, NULL };
 
 t_block	*extend_heap(size_t size, t_block *previous)
 {
@@ -104,13 +104,23 @@ void	allocate_block(t_block *block, size_t size)
 		// ft_putendl("Split size error"); // debug
 }
 
-e_type	define_type(size_t size)
+void	type_initialization(size_t size)
 {
 	if (size <= TINY_MAX)
-		return (TINY);
-	if (size <= SMALL_MAX)
-		return (SMALL);
-	return (LARGE);
+	{
+		g_zone.type = TINY;
+		g_zone.current = g_zone.tiny;
+	}
+	else if (size <= SMALL_MAX)
+	{
+		g_zone.type = SMALL;
+		g_zone.current = g_zone.small;
+	}
+	else
+	{
+		g_zone.type = LARGE;
+		g_zone.current = g_zone.large;
+	}
 }
 
 void	*malloc(size_t size)
@@ -119,13 +129,13 @@ void	*malloc(size_t size)
 
 	if ((int)size < 0)
 		return (NULL);
-	define_type(size);
+	type_initialization(size);
 	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", size); // debug
-	// ft_putendl(!g_bases.tiny ? "First init" : "Next init"); // debug
-	alloc_b = find_or_extend(&g_bases.tiny, size);
+	// ft_putendl(!g_zone.current ? "First init" : "Next init"); // debug
+	alloc_b = find_or_extend(&g_zone.current, size);
 	allocate_block(alloc_b, size);
 	ft_putendl(""); // debug
-	display_all_blocks(g_bases.tiny); // debug
+	display_all_blocks(g_zone.current); // debug
 	ft_putendl("--- END MALLOC ------------------\n"); // debug
 
 	return ((unsigned char *)alloc_b + sizeof_header());

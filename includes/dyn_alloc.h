@@ -12,6 +12,9 @@
 # define BLUE "\x1b[34m"
 # define B_BLUE "\x1b[1;34m"
 
+# define TINY_MAX 500
+# define SMALL_MAX 4000
+
 enum	e_status
 {
 	FREE,
@@ -32,13 +35,14 @@ typedef struct	s_block
 	struct s_block	*next;
 }				t_block;
 
-typedef struct	s_base
+typedef struct	s_zone
 {
-	e_type	type;
-	t_block	*tiny;
-	t_block	*small;
-	t_block	*large;
-}				t_base;
+	enum e_type	type;
+	t_block		*tiny;
+	t_block		*small;
+	t_block		*large;
+	t_block		*current;
+}				t_zone;
 
 /*
 ** TOOLS
