@@ -104,7 +104,7 @@ void	allocate_block(t_block *block, size_t size)
 		// ft_putendl("Split size error"); // debug
 }
 
-void	type_initialization(size_t size)
+void	zone_type_initialization(size_t size)
 {
 	if (size <= TINY_MAX)
 	{
@@ -133,7 +133,7 @@ void	*malloc(size_t size)
 	if ((int)size < 0)
 		return (NULL);
 	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", size); // debug
-	type_initialization(size);
+	zone_type_initialization(size);
 	// ft_putendl(!g_zone.current ? "First init" : "Next init"); // debug
 	alloc_b = find_or_extend(g_zone.current, size);
 	allocate_block(alloc_b, size);
