@@ -4,8 +4,13 @@
 # include <unistd.h>
 # include <sys/mman.h>
 # include <stdio.h>
+# include <stdbool.h>
+# include <stdlib.h>
 
 # define LITTLE_HEXA_BASE "0123456789abcdef"
+# define DEF "\033[0m"
+# define BLUE "\x1b[34m"
+# define B_BLUE "\x1b[1;34m"
 
 enum	e_status
 {
@@ -42,10 +47,12 @@ void	ft_display_hex_byte(unsigned char c);
 
 size_t	ft_strlen(const char *s);
 
+int		sizeof_header(void);
+int		page_size(void);
+
 /*
 ** MALLOC
 */
-void	*ft_malloc(size_t size);
 void	*malloc(size_t size);
 
 #endif

@@ -4,3 +4,5 @@ objs
 a.out
 libft_malloc_*
 libft_malloc.so
+**/test0
+**/test1
