@@ -21,13 +21,13 @@ t_block	*extend_heap(size_t size, t_block *previous)
 	size_t	mmap_size;
 
 	mmap_size = get_extend_size(size);
-	ft_putendl("EXTEND HEAP"); // debug
-	ft_putnbr2("Size needed = size + sizeof_header = ", size + sizeof_header()); // debug
-	ft_putnbr2("mmap_size = ", mmap_size); // debug
+	// ft_putendl("EXTEND HEAP"); // debug
+	// ft_putnbr2("Size needed = size + sizeof_header = ", size + sizeof_header()); // debug
+	// ft_putnbr2("mmap_size = ", mmap_size); // debug
 	b = mmap(0, mmap_size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
 	b->size = mmap_size - sizeof_header();
-	if (size > b->size) // debug
-		ft_putendl("Extend size error !"); // debug
+	// if (size > b->size) // debug
+		// ft_putendl("Extend size error !"); // debug
 	b->status = FREE;
 	b->next = NULL;
 	if (previous)
@@ -111,27 +111,27 @@ void	allocate_block(t_block *block, size_t size)
 	if (block->size > size + sizeof_header()) //j'ai la place de mettre un header si je split
 		split_block(block, size);
 	block->status = ALLOC;
-	if (size > block->size) // debug
-		ft_putendl("Split size error"); // debug
+	// if (size > block->size) // debug
+		// ft_putendl("Split size error"); // debug
 }
 
 void	zone_type_initialization(size_t size)
 {
 	if (size <= TINY_MAX)
 	{
-		ft_putendl("TINY"); // debug
+		// ft_putendl("TINY"); // debug
 		g_zone.type = TINY;
 		g_zone.current = &g_zone.tiny;
 	}
 	else if (size <= SMALL_MAX)
 	{
-		ft_putendl("SMALL"); // debug
+		// ft_putendl("SMALL"); // debug
 		g_zone.type = SMALL;
 		g_zone.current = &g_zone.small;
 	}
 	else
 	{
-		ft_putendl("LARGE"); // debug
+		// ft_putendl("LARGE"); // debug
 		g_zone.type = LARGE;
 		g_zone.current = &g_zone.large;
 	}
@@ -145,14 +145,14 @@ void	*malloc(size_t size)
 	if ((int)size < 0)
 		return (NULL);
 	new_size = get_aligned_size(size, 16);
-	ft_putnbr2("input size = ", size);
-	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", new_size); // debug
+	// ft_putnbr2("input size = ", size); // debug
+	// ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", new_size); // debug
 	zone_type_initialization(new_size);
 	alloc_b = find_or_extend(g_zone.current, new_size);
 	allocate_block(alloc_b, new_size);
-	ft_putendl(""); // debug
-	display_all_blocks(*g_zone.current); // debug
-	ft_putendl("--- END MALLOC ------------------\n"); // debug
+	// ft_putendl(""); // debug
+	// display_all_blocks(*g_zone.current); // debug
+	// ft_putendl("--- END MALLOC ------------------\n"); // debug
 
 	return ((unsigned char *)alloc_b + sizeof_header());
 }
