@@ -12,7 +12,7 @@
 # define BLUE "\x1b[34m"
 # define B_BLUE "\x1b[1;34m"
 
-# define TINY_MAX 512 // 14 pages allouées (avec headers)
+# define TINY_MAX 352 // 10 pages allouées (avec headers)
 # define SMALL_MAX 1024 // 26 pages allouées (avec headers)
 # define ZONE_ALLOC_NB 100
 

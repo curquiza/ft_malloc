@@ -50,7 +50,7 @@ t_block *find_available_or_last_block(t_block *blocks, size_t size)
 
 bool	is_available_block(t_block *block, size_t size)
 {
-	return (block->size >= size ? true : false);
+	return (block->size >= size && block->status == FREE ? true : false);
 }
 
 t_block	*find_or_extend(t_block **blocks, size_t size)
