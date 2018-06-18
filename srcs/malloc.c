@@ -2,21 +2,32 @@
 
 t_zone	g_zone = { TINY, NULL, NULL, NULL, &g_zone.tiny };
 
+size_t	get_extend_size(size_t size)
+{
+	size_t	s;
+
+	if (g_zone.type == TINY)
+		s = (TINY_MAX + sizeof_header()) * ZONE_ALLOC_NB;
+	else if (g_zone.type == SMALL)
+		s = (SMALL_MAX + sizeof_header()) * ZONE_ALLOC_NB;
+	else
+		s = size + sizeof_header();
+	return (get_aligned_size(s, page_size()));
+}
+
 t_block	*extend_heap(size_t size, t_block *previous)
 {
 	t_block	*b;
-	size_t	size_to_map;
 	size_t	mmap_size;
 
-	size_to_map = sizeof_header() + size;
-	mmap_size = ((size_to_map  / page_size()) + 1) * page_size();
-	// ft_putendl("EXTEND HEAP"); // debug
-	// ft_putnbr2("Size needed = size + sizeof_header = ", size_to_map); // debug
-	// ft_putnbr2("mmap_size = ", mmap_size); // debug
-	b = mmap(0, size_to_map, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+	mmap_size = get_extend_size(size);
+	ft_putendl("EXTEND HEAP"); // debug
+	ft_putnbr2("Size needed = size + sizeof_header = ", size + sizeof_header()); // debug
+	ft_putnbr2("mmap_size = ", mmap_size); // debug
+	b = mmap(0, mmap_size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
 	b->size = mmap_size - sizeof_header();
-	// if (size > b->size) // debug
-		// ft_putendl("Extend size error !"); // debug
+	if (size > b->size) // debug
+		ft_putendl("Extend size error !"); // debug
 	b->status = FREE;
 	b->next = NULL;
 	if (previous)
@@ -74,7 +85,7 @@ t_block	*split_block(t_block *block, size_t size)
 	return(block);
 }
 
-void	display_all_blocks(t_block *blocks) // debug
+void	display_all_blocks(t_block *blocks)
 {
 	int		i;
 
@@ -100,8 +111,8 @@ void	allocate_block(t_block *block, size_t size)
 	if (block->size > size + sizeof_header()) //j'ai la place de mettre un header si je split
 		split_block(block, size);
 	block->status = ALLOC;
-	// if (size > block->size) // debug
-		// ft_putendl("Split size error"); // debug
+	if (size > block->size) // debug
+		ft_putendl("Split size error"); // debug
 }
 
 void	zone_type_initialization(size_t size)
@@ -129,14 +140,16 @@ void	zone_type_initialization(size_t size)
 void	*malloc(size_t size)
 {
 	t_block		*alloc_b;
+	size_t		new_size;
 
 	if ((int)size < 0)
 		return (NULL);
-	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", size); // debug
-	zone_type_initialization(size);
-	// ft_putendl(!g_zone.current ? "First init" : "Next init"); // debug
-	alloc_b = find_or_extend(g_zone.current, size);
-	allocate_block(alloc_b, size);
+	new_size = get_aligned_size(size, 16);
+	ft_putnbr2("input size = ", size);
+	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", new_size); // debug
+	zone_type_initialization(new_size);
+	alloc_b = find_or_extend(g_zone.current, new_size);
+	allocate_block(alloc_b, new_size);
 	ft_putendl(""); // debug
 	display_all_blocks(*g_zone.current); // debug
 	ft_putendl("--- END MALLOC ------------------\n"); // debug

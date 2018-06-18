@@ -12,8 +12,9 @@
 # define BLUE "\x1b[34m"
 # define B_BLUE "\x1b[1;34m"
 
-# define TINY_MAX 500
-# define SMALL_MAX 4000
+# define TINY_MAX 512 // 14 pages allouées (avec headers)
+# define SMALL_MAX 1024 // 26 pages allouées (avec headers)
+# define ZONE_ALLOC_NB 100
 
 enum	e_status
 {
@@ -59,6 +60,7 @@ void	ft_display_hex_byte(unsigned char c);
 
 size_t	ft_strlen(const char *s);
 
+size_t	get_aligned_size(size_t size, int multiple);
 int		sizeof_header(void);
 int		page_size(void);
 
