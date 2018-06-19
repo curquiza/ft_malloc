@@ -138,13 +138,30 @@ static void	zone_type_initialization(size_t size)
 	}
 }
 
+static bool	check_alloc_mem_limit(size_t size)
+{
+	struct rlimit	rlp;
+	int				ret;
+
+	if ((int)size < 0)
+		return (false);
+	ret = getrlimit(RLIMIT_AS, &rlp);
+	printf("%d\n", ret);
+	printf("%llu\n", rlp.rlim_cur);
+	printf("%llu\n", rlp.rlim_max);
+	return (true);
+}
+
 void	*malloc(size_t size)
 {
 	t_block		*alloc_b;
 	size_t		new_size;
 
-	if ((int)size < 0)
+	// if ((int)size < 0)
+	// 	return (NULL);
+	if (check_alloc_mem_limit(size) == false)
 		return (NULL);
+
 	new_size = get_aligned_size(size, 16);
 	// ft_putnbr2("input size = ", size); // debug
 	// ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", new_size); // debug
