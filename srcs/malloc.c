@@ -2,7 +2,7 @@
 
 t_zone	g_zone = { TINY, NULL, NULL, NULL, &g_zone.tiny };
 
-size_t	get_extend_size(size_t size)
+static size_t	get_extend_size(size_t size)
 {
 	size_t	s;
 
@@ -15,7 +15,7 @@ size_t	get_extend_size(size_t size)
 	return (get_aligned_size(s, page_size()));
 }
 
-t_block	*extend_heap(size_t size, t_block *previous)
+static t_block	*extend_heap(size_t size, t_block *previous)
 {
 	t_block	*b;
 	size_t	mmap_size;
@@ -35,7 +35,7 @@ t_block	*extend_heap(size_t size, t_block *previous)
 	return (b);
 }
 
-t_block *find_available_or_last_block(t_block *blocks, size_t size)
+static t_block *find_available_or_last_block(t_block *blocks, size_t size)
 {
 	while (blocks)
 	{
@@ -53,7 +53,7 @@ bool	is_available_block(t_block *block, size_t size)
 	return (block->size >= size && block->status == FREE ? true : false);
 }
 
-t_block	*find_or_extend(t_block **blocks, size_t size)
+static t_block	*find_or_extend(t_block **blocks, size_t size)
 {
 	t_block		*place;
 
@@ -69,7 +69,7 @@ t_block	*find_or_extend(t_block **blocks, size_t size)
 		return (extend_heap(size, place));
 }
 
-t_block	*split_block(t_block *block, size_t size)
+static t_block	*split_block(t_block *block, size_t size)
 {
 	t_block		*new_block;
 	size_t		total_size;
@@ -106,7 +106,7 @@ void	display_all_blocks(t_block *blocks)
 	}
 }
 
-void	allocate_block(t_block *block, size_t size)
+static void	allocate_block(t_block *block, size_t size)
 {
 	if (block->size > size + sizeof_header()) //j'ai la place de mettre un header si je split
 		split_block(block, size);
@@ -115,7 +115,7 @@ void	allocate_block(t_block *block, size_t size)
 		// ft_putendl("Split size error"); // debug
 }
 
-void	zone_type_initialization(size_t size)
+static void	zone_type_initialization(size_t size)
 {
 	if (size <= TINY_MAX)
 	{
