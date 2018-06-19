@@ -1,6 +1,6 @@
 #include "dyn_alloc.h"
 
-t_zone	g_zone = { TINY, NULL, NULL, NULL, &g_zone.tiny };
+// t_zone	g_zone = { TINY, NULL, NULL, NULL, &g_zone.tiny };
 
 static size_t	get_extend_size(size_t size)
 {

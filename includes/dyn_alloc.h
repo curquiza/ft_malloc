@@ -45,6 +45,8 @@ typedef struct	s_zone
 	t_block		**current;
 }				t_zone;
 
+t_zone	g_zone;
+
 /*
 ** TOOLS
 */
@@ -68,5 +70,10 @@ int		page_size(void);
 ** MALLOC
 */
 void	*malloc(size_t size);
+
+/*
+** SHOW ALLOC MEM
+*/
+void	show_alloc_mem(void);
 
 #endif
