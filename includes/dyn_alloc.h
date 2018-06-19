@@ -12,10 +12,21 @@
 # define BLUE "\x1b[34m"
 # define B_BLUE "\x1b[1;34m"
 
+# define TINY_MAX 352 // 10 pages allouées (avec headers)
+# define SMALL_MAX 1024 // 26 pages allouées (avec headers)
+# define ZONE_ALLOC_NB 100
+
 enum	e_status
 {
 	FREE,
 	ALLOC
+};
+
+enum	e_type
+{
+	TINY,
+	SMALL,
+	LARGE
 };
 
 typedef struct	s_block
@@ -25,12 +36,14 @@ typedef struct	s_block
 	struct s_block	*next;
 }				t_block;
 
-typedef struct	s_base
+typedef struct	s_zone
 {
-	t_block	*tiny;
-	t_block	*small;
-	t_block	*large;
-}				t_base;
+	enum e_type	type;
+	t_block		*tiny;
+	t_block		*small;
+	t_block		*large;
+	t_block		**current;
+}				t_zone;
 
 /*
 ** TOOLS
@@ -47,6 +60,7 @@ void	ft_display_hex_byte(unsigned char c);
 
 size_t	ft_strlen(const char *s);
 
+size_t	get_aligned_size(size_t size, int multiple);
 int		sizeof_header(void);
 int		page_size(void);
 
