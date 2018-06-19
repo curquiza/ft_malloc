@@ -22,48 +22,24 @@ static void display_blocks(t_block *blocks)
 	}
 }
 
-static void	display_tinies(void)
+static void	display_zone(t_block *blocks)
 {
-	ft_putstr("TINY : ");
-	if (g_zone.tiny == NULL)
+	if (blocks == NULL)
 		ft_putendl("NONE");
 	else
 	{
-		ft_display_addr((unsigned long long)g_zone.tiny);
+		ft_display_addr((unsigned long long)blocks);
 		ft_putstr("\n");
+		display_blocks(blocks);
 	}
-	display_blocks(g_zone.tiny);
-}
-
-static void	display_smalls(void)
-{
-	ft_putstr("SMALL : ");
-	if (g_zone.small == NULL)
-		ft_putendl("NONE");
-	else
-	{
-		ft_display_addr((unsigned long long)g_zone.small);
-		ft_putstr("\n");
-	}
-	display_blocks(g_zone.small);
-}
-
-static void	display_larges(void)
-{
-	ft_putstr("LARGES : ");
-	if (g_zone.large == NULL)
-		ft_putendl("NONE");
-	else
-	{
-		ft_display_addr((unsigned long long)g_zone.large);
-		ft_putstr("\n");
-	}
-	display_blocks(g_zone.large);
 }
 
 void	show_alloc_mem(void)
 {
-	display_tinies();
-	display_smalls();
-	display_larges();
+	ft_putstr("TINY : ");
+	display_zone(g_zone.tiny);
+	ft_putstr("SMALL : ");
+	display_zone(g_zone.small);
+	ft_putstr("LARGE : ");
+	display_zone(g_zone.large);
 }
