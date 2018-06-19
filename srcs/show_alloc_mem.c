@@ -11,9 +11,9 @@ static void display_blocks(t_block *blocks)
 		{
 			start = (unsigned long long)blocks + sizeof_header();
 			end = (unsigned long long)blocks + sizeof_header() + blocks->size;
-			ft_display_addr_noendl(start);
+			ft_display_addr(start);
 			ft_putstr(" - ");
-			ft_display_addr_noendl(end);
+			ft_display_addr(end);
 			ft_putstr(" : ");
 			ft_putnbr(end - start);
 			ft_putendl(" octets");
@@ -28,7 +28,10 @@ static void	display_tinies(void)
 	if (g_zone.tiny == NULL)
 		ft_putendl("NONE");
 	else
+	{
 		ft_display_addr((unsigned long long)g_zone.tiny);
+		ft_putstr("\n");
+	}
 	display_blocks(g_zone.tiny);
 }
 
@@ -38,7 +41,10 @@ static void	display_smalls(void)
 	if (g_zone.small == NULL)
 		ft_putendl("NONE");
 	else
+	{
 		ft_display_addr((unsigned long long)g_zone.small);
+		ft_putstr("\n");
+	}
 	display_blocks(g_zone.small);
 }
 
@@ -48,7 +54,10 @@ static void	display_larges(void)
 	if (g_zone.large == NULL)
 		ft_putendl("NONE");
 	else
+	{
 		ft_display_addr((unsigned long long)g_zone.large);
+		ft_putstr("\n");
+	}
 	display_blocks(g_zone.large);
 }
 

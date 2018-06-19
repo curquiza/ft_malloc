@@ -96,6 +96,7 @@ void	display_all_blocks(t_block *blocks)
 		ft_putnbr2("i = ", i);
 		ft_putstr("address = ");
 		ft_display_addr((unsigned long long)blocks);
+		ft_putstr("\n");
 		ft_putnbr2("size of header = ", sizeof_header());
 		ft_putnbr2("size of block (without header) = ", blocks->size);
 		ft_putnbr2("size totale = ", blocks->size + sizeof_header());
