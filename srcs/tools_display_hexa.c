@@ -23,6 +23,12 @@ void	ft_display_addr(unsigned long long int n)
 	ft_putchar('\n');
 }
 
+void	ft_display_addr_noendl(unsigned long long int n)
+{
+	ft_putstr("0x");	
+	recur_dispay(n, LITTLE_HEXA_BASE);
+}
+
 void	ft_display_hex_byte(unsigned char c)
 {
 	char	*base;

@@ -48,14 +48,14 @@ int		main(void)
 	malloc_test(255);
 	malloc_test(300);
 	malloc_test(700);
-	malloc_test(256);
-	malloc_test(4100);
+	// malloc_test(256);
+	// malloc_test(4100);
 	malloc_test(824);
 	malloc_test(1220);
 	malloc_test(8220);
 	// malloc_test(1000);
 	// malloc_test(1);
-	// malloc_test(12);
+	malloc_test(12);
 	// malloc_test(0);
 	// malloc_test(0);
 	// malloc_test(20);
@@ -67,6 +67,8 @@ int		main(void)
 
 	// test0();
 	// test1();
+
+	show_alloc_mem();
 
 	// while(1);
 	return (0);

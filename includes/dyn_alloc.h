@@ -7,7 +7,7 @@
 # include <stdbool.h>
 # include <stdlib.h>
 
-# define LITTLE_HEXA_BASE "0123456789abcdef"
+# define LITTLE_HEXA_BASE "0123456789ABCDEF"
 # define DEF "\033[0m"
 # define BLUE "\x1b[34m"
 # define B_BLUE "\x1b[1;34m"
@@ -58,6 +58,7 @@ void	ft_putendl2(char *s1, char *s2);
 void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl2_fd(char *s1, char *s2, int fd);
 void	ft_display_addr(unsigned long long int n);
+void	ft_display_addr_noendl(unsigned long long int n);
 void	ft_display_hex_byte(unsigned char c);
 
 size_t	ft_strlen(const char *s);
