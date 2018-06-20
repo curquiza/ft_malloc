@@ -1,7 +1,5 @@
 #include "dyn_alloc.h"
 
-// t_zone	g_zone = { TINY, NULL, NULL, NULL, &g_zone.tiny };
-
 static size_t	get_extend_size(size_t size)
 {
 	size_t	s;
@@ -109,7 +107,7 @@ void	display_all_blocks(t_block *blocks)
 
 static void	allocate_block(t_block *block, size_t size)
 {
-	if (block->size > size + sizeof_header()) //j'ai la place de mettre un header si je split
+	if (g_zone.type != LARGE && block->size > size + sizeof_header()) //j'ai la place de mettre un header si je split
 		split_block(block, size);
 	block->status = ALLOC;
 	// if (size > block->size) // debug
@@ -147,7 +145,7 @@ void	*malloc(size_t size)
 		return (NULL);
 	new_size = get_aligned_size(size, 16);
 	// ft_putnbr2("input size = ", size); // debug
-	// ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", new_size); // debug
+	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", new_size); // debug
 	zone_type_initialization(new_size);
 	alloc_b = find_or_extend(g_zone.current, new_size);
 	allocate_block(alloc_b, new_size);
