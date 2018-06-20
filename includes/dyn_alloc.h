@@ -13,7 +13,7 @@
 # define B_GREEN "\x1b[1;32m"
 
 # define TINY_MAX 352 // 10 pages allouées (avec headers)
-# define SMALL_MAX 1024 // 26 pages allouées (avec headers)
+# define SMALL_MAX 4096 // 101 pages allouées (avec headers)
 # define ZONE_ALLOC_NB 100
 
 enum	e_status
@@ -51,6 +51,7 @@ t_zone	g_zone;
 ** TOOLS
 */
 void	ft_putnbr(int n);
+void	ft_put_sizet(size_t n);
 void	ft_putnbr2(char *s, int nbr);
 void	ft_putstr(char const *s);
 void	ft_putendl(char const *s);
