@@ -28,6 +28,7 @@ static t_block	*extend_heap(size_t size, t_block *previous)
 		// ft_putendl("Extend size error !"); // debug
 	b->status = FREE;
 	b->next = NULL;
+	b->prev = previous;
 	if (previous)
 		previous->next = b;
 	return (b);
@@ -76,6 +77,7 @@ static t_block	*split_block(t_block *block, size_t size)
 	new_block = (t_block *)((unsigned char *)block + sizeof_header() + size);
 	new_block->size = total_size - size - sizeof_header() * 2;
 	new_block->status = FREE;
+	new_block->prev = block;
 	new_block->next = block->next;
 	block->size = size;
 	// block->status = ALLOC;

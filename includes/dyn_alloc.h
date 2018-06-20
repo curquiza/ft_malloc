@@ -13,7 +13,7 @@
 # define B_GREEN "\x1b[1;32m"
 
 # define TINY_MAX 352 // 10 pages allouées (avec headers)
-# define SMALL_MAX 4096 // 101 pages allouées (avec headers)
+# define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?
 # define ZONE_ALLOC_NB 100
 
 enum	e_status
@@ -33,6 +33,7 @@ typedef struct	s_block
 {
 	enum e_status	status;
 	size_t			size;
+	struct s_block	*prev;
 	struct s_block	*next;
 }				t_block;
 
@@ -81,6 +82,6 @@ void	show_alloc_mem(void);
 /*
 ** FREE
 */
-void	free(void *ptr);
+// void	free(void *ptr);
 
 #endif

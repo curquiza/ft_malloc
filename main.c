@@ -46,18 +46,22 @@ int		main(void)
 {
 	char	*a;
 
-	a = malloc_test(255);
-	malloc_test(300);
-	malloc_test(700);
+	a = malloc_test(1024);
+	// free(a + 1);
 	free(a);
+	// malloc_test(300);
+	// malloc_test(700);
 	// malloc_test(256);
 	// malloc_test(4100);
-	malloc_test(824);
+	// malloc_test(824);
 	malloc_test(1220);
 	malloc_test(8220);
-	// malloc_test(1000);
+	a = malloc_test(9220);
+	malloc_test(5024);
+	// malloc_test(3024);
+	// malloc_test(1500);
 	// malloc_test(1);
-	malloc_test(12);
+	// malloc_test(12);
 	// malloc_test(0);
 	// malloc_test(0);
 	// malloc_test(20);
@@ -69,7 +73,7 @@ int		main(void)
 
 	// test0();
 	// test1();
-
+	free(a);
 	ft_putstr("\n");
 	show_alloc_mem();
 
