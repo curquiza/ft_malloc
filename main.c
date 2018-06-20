@@ -27,7 +27,7 @@ void	test1(void)
 	}
 }
 
-void	malloc_test(size_t size)
+void	*malloc_test(size_t size)
 {
 	size_t	i;
 	char	*addr;
@@ -39,15 +39,17 @@ void	malloc_test(size_t size)
 		addr[i] = 'c';
 		i++;
 	}
+	return (addr);
 }
 
 int		main(void)
 {
-	// char * a = malloc(-1);(void)a;
+	char	*a;
 
-	malloc_test(255);
+	a = malloc_test(255);
 	malloc_test(300);
 	malloc_test(700);
+	free(a);
 	// malloc_test(256);
 	// malloc_test(4100);
 	malloc_test(824);
@@ -68,6 +70,7 @@ int		main(void)
 	// test0();
 	// test1();
 
+	ft_putstr("\n");
 	show_alloc_mem();
 
 	// while(1);
