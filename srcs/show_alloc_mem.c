@@ -1,10 +1,12 @@
 #include "dyn_alloc.h"
 
-static void display_blocks(t_block *blocks)
+static size_t display_blocks(t_block *blocks)
 {
 	unsigned long long	start;
 	unsigned long long	end;
+	size_t				total;
 
+	total = 0;
 	while (blocks)
 	{
 		if (blocks->status == ALLOC)
@@ -15,14 +17,16 @@ static void display_blocks(t_block *blocks)
 			ft_putstr(" - ");
 			ft_display_addr(end);
 			ft_putstr(" : ");
-			ft_putnbr(end - start);
+			ft_put_sizet((size_t)(end - start));
 			ft_putendl(" octets");
+			total += (size_t)(end - start);
 		}
 		blocks = blocks->next;
 	}
+	return (total);
 }
 
-static void	display_zone(t_block *blocks)
+static void	display_zone(t_block *blocks, size_t *total)
 {
 	if (blocks == NULL)
 		ft_putendl("NONE");
@@ -30,16 +34,22 @@ static void	display_zone(t_block *blocks)
 	{
 		ft_display_addr((unsigned long long)blocks);
 		ft_putstr("\n");
-		display_blocks(blocks);
+		*total = *total + display_blocks(blocks);
 	}
 }
 
 void	show_alloc_mem(void)
 {
+	size_t		total;
+
+	total = 0;
 	ft_putstr("TINY : ");
-	display_zone(g_zone.tiny);
+	display_zone(g_zone.tiny, &total);
 	ft_putstr("SMALL : ");
-	display_zone(g_zone.small);
+	display_zone(g_zone.small, &total);
 	ft_putstr("LARGE : ");
-	display_zone(g_zone.large);
+	display_zone(g_zone.large, &total);
+	ft_putstr("Total : ");
+	ft_put_sizet(total);
+	ft_putendl(" octets");
 }

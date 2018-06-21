@@ -24,6 +24,17 @@ void		ft_putnbr(int n)
 	}
 }
 
+void		ft_put_sizet(size_t n)
+{
+	if (n / 10 == 0)
+		ft_putchar(n % 10 + '0');
+	else
+	{
+		ft_put_sizet(n / 10);
+		ft_putchar(n % 10 + '0');
+	}
+}
+
 void		ft_putnbr2(char *s, int nbr)
 {
 	ft_putstr(s);

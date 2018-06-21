@@ -9,11 +9,11 @@
 
 # define LITTLE_HEXA_BASE "0123456789ABCDEF"
 # define DEF "\033[0m"
-# define BLUE "\x1b[34m"
 # define B_BLUE "\x1b[1;34m"
+# define B_GREEN "\x1b[1;32m"
 
 # define TINY_MAX 352 // 10 pages allouées (avec headers)
-# define SMALL_MAX 1024 // 26 pages allouées (avec headers)
+# define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?
 # define ZONE_ALLOC_NB 100
 
 enum	e_status
@@ -33,6 +33,7 @@ typedef struct	s_block
 {
 	enum e_status	status;
 	size_t			size;
+	struct s_block	*prev;
 	struct s_block	*next;
 }				t_block;
 
@@ -51,6 +52,7 @@ t_zone	g_zone;
 ** TOOLS
 */
 void	ft_putnbr(int n);
+void	ft_put_sizet(size_t n);
 void	ft_putnbr2(char *s, int nbr);
 void	ft_putstr(char const *s);
 void	ft_putendl(char const *s);
@@ -76,5 +78,10 @@ void	*malloc(size_t size);
 ** SHOW ALLOC MEM
 */
 void	show_alloc_mem(void);
+
+/*
+** FREE
+*/
+// void	free(void *ptr);
 
 #endif

@@ -16,6 +16,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 			tools_str.c \
 			tools_basics.c \
 			show_alloc_mem.c \
+			free.c \
 			malloc.c)
 
 O_DIR = objs
@@ -51,6 +52,7 @@ clean :
 fclean : clean
 	@rm -rf $(NAME)
 	@rm -rf $(LINK_NAME)
+	@rm -rf a.out
 
 re : fclean all
 
