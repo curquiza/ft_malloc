@@ -36,11 +36,14 @@ static t_block	*find_block_to_free(void *ptr)
 
 static void	merge_free_blocks(t_block *b1, t_block *b2)
 {
-	b1->size = b1->size + sizeof_header() + b2->size;
-	b1->next = b2->next;
-	b2->next = NULL;
-	b2->prev = NULL;
-	b2->size = 0;
+	if ((unsigned char *)b1 + b1->size == (unsigned char *)b2)
+	{
+		b1->size = b1->size + sizeof_header() + b2->size;
+		b1->next = b2->next;
+		b2->next = NULL;
+		b2->prev = NULL;
+		b2->size = 0;
+	}
 }
 
 static void	free_on(t_block *block)
