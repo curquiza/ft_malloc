@@ -17,6 +17,13 @@ static void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
+static void		free_debug(t_block * block)
+{
+	ft_putstr(B_GREEN"free on"DEF" - addr : "); // debug
+	ft_display_addr((unsigned long long)block); // debug
+	ft_putstr("\n"); // debug
+}
+
 static t_block	*manage_reallocation(t_block *block, size_t size)
 {
 	t_block		*new;
@@ -26,13 +33,19 @@ static t_block	*manage_reallocation(t_block *block, size_t size)
 	tmp_size = block->size;
 	tmp_data = (char *)block + sizeof_header();
 	if (g_zone.type != LARGE)
+	{
+		free_debug(block);
 		free_on(block);
+	}
 	new = malloc(size);
 	new = (t_block *)((char *)new - sizeof_header());
 	if (new != block)
 		ft_memcpy((char *)new + sizeof_header(), tmp_data, tmp_size);
 	if (g_zone.type == LARGE)
+	{
+		free_debug(block);
 		free_on(block);
+	}
 	return (new);
 }
 
@@ -48,13 +61,16 @@ void	*realloc(void *ptr, size_t size)
 	b = find_block(ptr);
 	if (!b)
 	{
-		// ft_putendl("Fatal error : impossible to realloc this address.");
+		ft_putendl("Fatal error : impossible to realloc this address.");
 		// abort();
 		return (NULL);
 	}
 	new_size = get_aligned_size(size, 16);
 	if (b->size >= new_size)
+	{
+		ft_putendl("Enough size already");
 		return (ptr);
-	new_b = manage_reallocation(b, new_size);	
+	}
+	new_b = manage_reallocation(b, new_size);
 	return ((char *)new_b + sizeof_header());
 }

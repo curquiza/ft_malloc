@@ -58,10 +58,61 @@ void	test_malloc_free(void)
 	ft_putendl("-----------------------------------");
 }
 
+void	test_realloc1(void)
+{
+	char *a;
+	char *b;
+	char *c;
+
+	a = malloc_basic_test(10);
+	printf("addr of a = %p\n", a);
+	printf("a = %s\n", a);
+
+	b = realloc(a, 16);
+	printf("addr of b = %p\n", b);
+	b[10] = '\0';
+	printf("b = %s\n", b);
+
+	c = realloc(b, 32);
+	printf("addr of c = %p\n", c);
+	c[10] = '\0';
+	printf("c = %s\n", c);
+}
+
+void	test_realloc2(void)
+{
+	char *a;
+	char *b;
+	char *c;
+	// char *d;
+
+	a = malloc_basic_test(15);
+	printf("addr of a = %p\n", a);
+	a[15] = '\0';
+	printf("a = %s\n", a);
+
+	// malloc_basic_test(15);
+
+	b = realloc(a, 8007);
+	printf("addr of b = %p\n", b);
+	b[15] = '\0';
+	printf("b = %s\n", b);
+
+	c = realloc(b, 7);
+	printf("addr of d = %p\n", c);
+	c[15] = '\0';
+	printf("c = %s\n", c);
+}
+
 int		main(void)
 {
-	test_only_malloc();
-	ft_putstr("\n");
-	test_malloc_free();
+	// test_only_malloc();
+	// ft_putstr("\n");
+	// test_malloc_free();
+	// ft_putstr("\n");
+	
+	// test_realloc1();
+	test_realloc2();
+	// show_alloc_mem();
 	return (0);
 }

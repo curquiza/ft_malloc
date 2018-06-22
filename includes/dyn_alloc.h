@@ -11,7 +11,7 @@
 # define DEF "\033[0m"
 # define B_BLUE "\x1b[1;34m"
 # define B_GREEN "\x1b[1;32m"
-# define B_YELLOW "\x1b[1;31m"
+# define B_YELLOW "\x1b[1;33m"
 
 # define TINY_MAX 352 // 10 pages allouées (avec headers)
 # define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?

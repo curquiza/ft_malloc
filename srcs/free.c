@@ -50,7 +50,7 @@ void	free(void *ptr)
 	b_to_free = find_block(ptr);
 	if (!b_to_free)
 	{
-		// ft_putendl("Fatal error : impossible to free this address.");
+		ft_putendl("Fatal error : impossible to free this address.");
 		// abort();
 		return ;
 	}
