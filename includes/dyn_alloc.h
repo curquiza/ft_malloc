@@ -11,6 +11,7 @@
 # define DEF "\033[0m"
 # define B_BLUE "\x1b[1;34m"
 # define B_GREEN "\x1b[1;32m"
+# define B_YELLOW "\x1b[1;33m"
 
 # define TINY_MAX 352 // 10 pages allouées (avec headers)
 # define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?
@@ -75,13 +76,20 @@ int		page_size(void);
 void	*malloc(size_t size);
 
 /*
+** FREE
+*/
+t_block	*find_block(void *ptr);
+void	free_on(t_block *block);
+void	free(void *ptr);
+
+/*
+** REALLOC
+*/
+void	*realloc(void *ptr, size_t size);
+
+/*
 ** SHOW ALLOC MEM
 */
 void	show_alloc_mem(void);
-
-/*
-** FREE
-*/
-// void	free(void *ptr);
 
 #endif
