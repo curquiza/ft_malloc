@@ -66,7 +66,6 @@ void	ft_display_hex_byte(unsigned char c);
 
 size_t	ft_strlen(const char *s);
 
-void	*ft_memcpy(void *dst, const void *src, size_t n);
 size_t	get_aligned_size(size_t size, int multiple);
 int		sizeof_header(void);
 int		page_size(void);

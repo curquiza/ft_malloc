@@ -1,5 +1,22 @@
 #include "dyn_alloc.h"
 
+static void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t			i;
+	unsigned char	*dst2;
+	unsigned char	*src2;
+
+	dst2 = (unsigned char *)dst;
+	src2 = (unsigned char *)src;
+	i = 0;
+	while (i < n)
+	{
+		dst2[i] = src2[i];
+		i++;
+	}
+	return (dst);
+}
+
 static t_block	*manage_reallocation(t_block *block, size_t size)
 {
 	t_block		*new;
