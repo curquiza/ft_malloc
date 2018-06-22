@@ -11,7 +11,7 @@ static t_block	*look_for_addr_on(t_block *blocks, void *ptr)
 	return (NULL);
 }
 
-static t_block	*find_block_to_free(void *ptr)
+t_block	*find_block(void *ptr)
 {
 	t_block		*block;
 
@@ -36,7 +36,7 @@ static t_block	*find_block_to_free(void *ptr)
 
 static void	merge_free_blocks(t_block *b1, t_block *b2)
 {
-	if ((unsigned char *)b1 + b1->size == (unsigned char *)b2)
+	if ((unsigned char *)b1 + sizeof_header() + b1->size == (unsigned char *)b2)
 	{
 		b1->size = b1->size + sizeof_header() + b2->size;
 		b1->next = b2->next;
@@ -46,7 +46,7 @@ static void	merge_free_blocks(t_block *b1, t_block *b2)
 	}
 }
 
-static void	free_on(t_block *block)
+void	free_on(t_block *block)
 {
 	t_block	*left;
 	t_block	*right;
@@ -81,7 +81,7 @@ void	free(void *ptr)
 	
 	if (ptr == NULL)
 		return ;
-	b_to_free = find_block_to_free(ptr);
+	b_to_free = find_block(ptr);
 	if (!b_to_free)
 	{
 		// ft_putendl("Fatal error : impossible to free this address.");
