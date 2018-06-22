@@ -29,10 +29,12 @@ static t_block	*manage_reallocation(t_block *block, size_t size)
 	t_block		*new;
 	size_t		tmp_size;
 	char *		tmp_data;
+	enum e_type	tmp_type;
 
 	tmp_size = block->size;
 	tmp_data = (char *)block + sizeof_header();
-	if (g_zone.type != LARGE)
+	tmp_type = g_zone.type;
+	if (tmp_type != LARGE)
 	{
 		free_debug(block);
 		free_on(block);
@@ -41,7 +43,7 @@ static t_block	*manage_reallocation(t_block *block, size_t size)
 	new = (t_block *)((char *)new - sizeof_header());
 	if (new != block)
 		ft_memcpy((char *)new + sizeof_header(), tmp_data, tmp_size);
-	if (g_zone.type == LARGE)
+	if (tmp_type == LARGE)
 	{
 		free_debug(block);
 		free_on(block);

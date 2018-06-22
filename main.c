@@ -58,6 +58,21 @@ void	test_malloc_free(void)
 	ft_putendl("-----------------------------------");
 }
 
+void	test_malloc_free2(void)
+{
+	ft_putendl("--- MALLOC FREE -------------------");
+	char	*a;
+
+	a = malloc_basic_test(1024);
+	ft_putstr("\nBEFORE FREE :\n");
+	show_alloc_mem();
+	ft_putstr("\n");
+	free(a);
+	ft_putstr("\nAFTER FREE :\n");
+	show_alloc_mem();
+	ft_putendl("-----------------------------------");
+}
+
 void	test_realloc1(void)
 {
 	char *a;
@@ -84,14 +99,13 @@ void	test_realloc2(void)
 	char *a;
 	char *b;
 	char *c;
-	// char *d;
 
 	a = malloc_basic_test(15);
 	printf("addr of a = %p\n", a);
 	a[15] = '\0';
 	printf("a = %s\n", a);
 
-	// malloc_basic_test(15);
+	malloc_basic_test(15);
 
 	b = realloc(a, 8007);
 	printf("addr of b = %p\n", b);
@@ -102,6 +116,8 @@ void	test_realloc2(void)
 	printf("addr of d = %p\n", c);
 	c[15] = '\0';
 	printf("c = %s\n", c);
+
+	show_alloc_mem();
 }
 
 int		main(void)
@@ -109,10 +125,10 @@ int		main(void)
 	// test_only_malloc();
 	// ft_putstr("\n");
 	// test_malloc_free();
+	// test_malloc_free2();
 	// ft_putstr("\n");
 	
 	// test_realloc1();
 	test_realloc2();
-	// show_alloc_mem();
 	return (0);
 }
