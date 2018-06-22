@@ -15,6 +15,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 			tools_display_hexa.c \
 			tools_str.c \
 			tools_basics.c \
+			find_block.c \
 			show_alloc_mem.c \
 			realloc.c \
 			free.c \
