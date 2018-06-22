@@ -75,18 +75,18 @@ int		page_size(void);
 void	*malloc(size_t size);
 
 /*
-** SHOW ALLOC MEM
-*/
-void	show_alloc_mem(void);
-
-/*
 ** FREE
 */
 void	free(void *ptr);
 
 /*
-**
+** REALLOC
 */
 void	*realloc(void *ptr, size_t size);
+
+/*
+** SHOW ALLOC MEM
+*/
+void	show_alloc_mem(void);
 
 #endif
