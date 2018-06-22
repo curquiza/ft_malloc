@@ -82,6 +82,11 @@ void	show_alloc_mem(void);
 /*
 ** FREE
 */
-// void	free(void *ptr);
+void	free(void *ptr);
+
+/*
+**
+*/
+void	*realloc(void *ptr, size_t size);
 
 #endif

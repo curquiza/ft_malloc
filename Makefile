@@ -16,6 +16,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 			tools_str.c \
 			tools_basics.c \
 			show_alloc_mem.c \
+			realloc.c \
 			free.c \
 			malloc.c)
 
