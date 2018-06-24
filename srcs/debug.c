@@ -61,3 +61,9 @@ void	realloc_free_debug(t_block *b)
 	realloc_call_debug();
 	free_debug((char *)b + sizeof_header());
 }
+
+void	realloc_enough_space_debug(void)
+{
+	realloc_call_debug();
+	ft_putstr_fd("enough space\n", 2);
+}

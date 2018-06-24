@@ -66,7 +66,7 @@ void	*realloc(void *ptr, size_t size)
 	new_size = get_aligned_size(size, 16);
 	if (b->size >= new_size)
 	{
-		ft_putendl("Enough size already"); // debug
+		getenv(DEBUG_ENV_VAR) ? realloc_enough_space_debug() : 0;
 		return (ptr);
 	}
 	new_b = manage_reallocation(b, new_size);

@@ -108,5 +108,6 @@ void	free_debug(void *ptr);
 void	realloc_input_debug(void *ptr, size_t size);
 void	realloc_free_debug(t_block *b);
 void	realloc_call_debug(void);
+void	realloc_enough_space_debug(void);
 
 #endif

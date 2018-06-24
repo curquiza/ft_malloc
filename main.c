@@ -85,12 +85,12 @@ void	test_realloc1(void)
 
 	b = realloc(a, 16);
 	printf("addr of b = %p\n", b);
-	b[10] = '\0';
+	// b[10] = '\0';
 	printf("b = %s\n", b);
 
 	c = realloc(b, 32);
 	printf("addr of c = %p\n", c);
-	c[10] = '\0';
+	// c[10] = '\0';
 	printf("c = %s\n", c);
 
 	show_alloc_mem();
@@ -111,12 +111,10 @@ void	test_realloc2(void)
 
 	b = realloc(a, 8007);
 	printf("addr of b = %p\n", b);
-	b[15] = '\0';
 	printf("b = %s\n", b);
 
 	c = realloc(b, 7);
 	printf("addr of d = %p\n", c);
-	c[15] = '\0';
 	printf("c = %s\n", c);
 
 	show_alloc_mem();
@@ -129,28 +127,41 @@ void	test_realloc3(void)
 
 	a = malloc_basic_test(15);
 	printf("addr of a = %p\n", a);
-	a[15] = '\0';
-	printf("a = %s\n", a);
 
 	b = realloc(a, 600);
 	printf("addr of b = %p\n", b);
-	b[15] = '\0';
-	printf("b = %s\n", b);
 
 	show_alloc_mem();
 }
 
+void	test_realloc4(void)
+{
+	char *a;
+	char *b;
+	char *c;
+
+	a = malloc_basic_test(89003);
+	printf("addr of a = %p\n", a);
+
+	b = realloc(a, 1093838);
+	printf("addr of b = %p\n", b);
+
+	c = realloc(NULL, 12);
+	printf("addr of c = %p\n", c);
+	show_alloc_mem();
+}
 
 int		main(void)
 {
 	test_only_malloc();
 	ft_putstr("\n");
 	test_malloc_free();
-	// test_malloc_free2();
-	// ft_putstr("\n");
+	test_malloc_free2();
+	ft_putstr("\n");
 
-	// test_realloc1();
-	// test_realloc2();
-	// test_realloc3();
+	test_realloc1();
+	test_realloc2();
+	test_realloc3();
+	test_realloc4();
 	return (0);
 }
