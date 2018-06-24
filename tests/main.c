@@ -32,7 +32,7 @@ int		main(void)
 		a[i] = 'c';
 		i++;
 	}
-	printf("a avant realloc = %p\n", a);	
+	printf("a avant realloc = %p\n", a);
 	// b = realloc(a, 16);
 	b = realloc(a, 200);
 	printf("a apres realloc = %p\n", a);
