@@ -55,6 +55,7 @@ t_zone	g_zone;
 void	ft_putnbr(int n);
 void	ft_put_sizet(size_t n);
 void	ft_putnbr2(char *s, int nbr);
+void	ft_putnbr2_fd(char *s, int nbr, int fd);
 void	ft_putstr(char const *s);
 void	ft_putendl(char const *s);
 void	ft_putendl2(char *s1, char *s2);
