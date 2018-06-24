@@ -1,15 +1,5 @@
 #include "dyn_alloc.h"
 
-static void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-static void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
 void		ft_putnbr(int n)
 {
 	if (n / 10 == 0 && n % 10 < 0)
@@ -59,7 +49,7 @@ void		ft_put_sizet(size_t n)
 	}
 }
 
-void		ft_putnbr2(char *s, int nbr)
+void		ft_putnbr2(char *s, int nbr) // non-official
 {
 	ft_putstr(s);
 	ft_putnbr(nbr);

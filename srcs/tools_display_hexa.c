@@ -1,15 +1,5 @@
 #include "dyn_alloc.h"
 
-static void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-static void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
-
 void	ft_putaddr(unsigned long long int n)
 {
 	if (n / 16 == 0)

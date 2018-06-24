@@ -54,15 +54,14 @@ t_zone	g_zone;
 /*
 ** TOOLS
 */
+void	ft_putchar(char c);
+void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr(int n);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_put_sizet(size_t n);
-void	ft_putnbr2(char *s, int nbr);
 void	ft_putstr(char const *s);
-void	ft_putendl(char const *s);
-void	ft_putendl2(char *s1, char *s2);
 void	ft_putstr_fd(char const *s, int fd);
-void	ft_putendl2_fd(char *s1, char *s2, int fd);
+void	ft_putendl(char const *s);
 void	ft_putaddr(unsigned long long int n);
 void	ft_putaddr_fd(unsigned long long int n, int fd);
 
@@ -71,6 +70,11 @@ size_t	ft_strlen(const char *s);
 size_t	get_aligned_size(size_t size, int multiple);
 int		sizeof_header(void);
 int		page_size(void);
+
+// NON-OFFICIAL DEBUGING FUNCTION
+void	ft_putnbr2(char *s, int nbr);
+void	ft_putendl2(char *s1, char *s2);
+// void	ft_putendl2_fd(char *s1, char *s2, int fd);
 
 /*
 ** MALLOC
@@ -99,6 +103,5 @@ void	show_alloc_mem(void);
 */
 void	malloc_input_debug(size_t size, size_t aligned_size);
 void	malloc_output_debug(t_block *b);
-
 
 #endif
