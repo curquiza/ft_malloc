@@ -18,6 +18,7 @@
 # define ZONE_ALLOC_NB 100
 
 # define DEBUG_ENV_VAR "FT_MALLOC_DEBUG"
+# define NOCOLOR_ENV_VAR "FT_MALLOC_NOCOLOR"
 
 enum	e_status
 {
