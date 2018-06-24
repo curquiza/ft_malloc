@@ -104,5 +104,8 @@ void	show_alloc_mem(void);
 void	malloc_input_debug(size_t size, size_t aligned_size);
 void	malloc_output_debug(t_block *b);
 void	free_debug(void *ptr);
+void	realloc_input_debug(void *ptr, size_t size);
+void	realloc_free_debug(t_block *b);
+void	realloc_call_debug(void);
 
 #endif
