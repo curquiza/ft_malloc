@@ -17,6 +17,8 @@
 # define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?
 # define ZONE_ALLOC_NB 100
 
+# define DEBUG_ENV_VAR "FT_MALLOC_DEBUG"
+
 enum	e_status
 {
 	FREE,
@@ -53,17 +55,16 @@ t_zone	g_zone;
 ** TOOLS
 */
 void	ft_putnbr(int n);
+void	ft_putnbr_fd(int n, int fd);
 void	ft_put_sizet(size_t n);
 void	ft_putnbr2(char *s, int nbr);
-void	ft_putnbr2_fd(char *s, int nbr, int fd);
 void	ft_putstr(char const *s);
 void	ft_putendl(char const *s);
 void	ft_putendl2(char *s1, char *s2);
 void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl2_fd(char *s1, char *s2, int fd);
-void	ft_display_addr(unsigned long long int n);
-void	ft_display_addr_noendl(unsigned long long int n);
-void	ft_display_hex_byte(unsigned char c);
+void	ft_putaddr(unsigned long long int n);
+void	ft_putaddr_fd(unsigned long long int n, int fd);
 
 size_t	ft_strlen(const char *s);
 
@@ -92,5 +93,12 @@ void	*realloc(void *ptr, size_t size);
 ** SHOW ALLOC MEM
 */
 void	show_alloc_mem(void);
+
+/*
+** DEBUG
+*/
+void	malloc_input_debug(size_t size, size_t aligned_size);
+void	malloc_output_debug(t_block *b);
+
 
 #endif

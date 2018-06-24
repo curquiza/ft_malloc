@@ -29,7 +29,7 @@ void		ft_putnbr(int n)
 	}
 }
 
-static void		ft_putnbr_fd(int n, int fd)
+void		ft_putnbr_fd(int n, int fd)
 {
 	if (n / 10 == 0 && n % 10 < 0)
 	{
@@ -40,7 +40,7 @@ static void		ft_putnbr_fd(int n, int fd)
 		ft_putchar_fd(n % 10 + '0', fd);
 	else
 	{
-		ft_putnbr(n / 10);
+		ft_putnbr_fd(n / 10, fd);
 		if (n < 0)
 			ft_putchar_fd(-1 * (n % 10) + '0', fd);
 		else
@@ -64,11 +64,4 @@ void		ft_putnbr2(char *s, int nbr)
 	ft_putstr(s);
 	ft_putnbr(nbr);
 	ft_putstr("\n");
-}
-
-void		ft_putnbr2_fd(char *s, int nbr, int fd)
-{
-	ft_putstr_fd(s, fd);
-	ft_putnbr_fd(nbr, fd);
-	ft_putstr_fd("\n", fd);
 }

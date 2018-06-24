@@ -42,7 +42,7 @@ void	free(void *ptr)
 	t_block		*b_to_free;
 
 	ft_putstr(B_GREEN"FREE"DEF" - addr : "); // debug
-	ft_display_addr((unsigned long long)ptr); // debug
+	ft_putaddr((unsigned long long)ptr); // debug
 	ft_putstr("\n"); // debug
 
 	if (ptr == NULL)

@@ -13,9 +13,9 @@ static size_t display_blocks(t_block *blocks)
 		{
 			start = (unsigned long long)blocks + sizeof_header();
 			end = (unsigned long long)blocks + sizeof_header() + blocks->size;
-			ft_display_addr(start);
+			ft_putaddr(start);
 			ft_putstr(" - ");
-			ft_display_addr(end);
+			ft_putaddr(end);
 			ft_putstr(" : ");
 			ft_put_sizet((size_t)(end - start));
 			ft_putendl(" octets");
@@ -32,7 +32,7 @@ static void	display_zone(t_block *blocks, size_t *total)
 		ft_putendl("NONE");
 	else
 	{
-		ft_display_addr((unsigned long long)blocks);
+		ft_putaddr((unsigned long long)blocks);
 		ft_putstr("\n");
 		*total = *total + display_blocks(blocks);
 	}

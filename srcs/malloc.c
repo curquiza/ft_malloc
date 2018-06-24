@@ -95,7 +95,7 @@ void	display_all_blocks(t_block *blocks)
 	{
 		ft_putnbr2("i = ", i);
 		ft_putstr("address = ");
-		ft_display_addr((unsigned long long)blocks);
+		ft_putaddr((unsigned long long)blocks);
 		ft_putstr("\n");
 		ft_putnbr2("size of header = ", sizeof_header());
 		ft_putnbr2("size of block (without header) = ", blocks->size);
@@ -146,14 +146,16 @@ void	*malloc(size_t size)
 	if ((int)size < 0)
 		return (NULL);
 	new_size = get_aligned_size(size, 16);
+	getenv(DEBUG_ENV_VAR) ? malloc_input_debug(size, new_size) : 0;
 	// ft_putnbr2("input size = ", size); // debug
-	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", new_size); // debug
+	// ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", new_size); // debug
 	zone_type_initialization(new_size);
 	alloc_b = find_or_extend(g_zone.current, new_size);
 	allocate_block(alloc_b, new_size);
 	// ft_putendl(""); // debug
 	// display_all_blocks(*g_zone.current); // debug
 	// ft_putendl("--- END MALLOC ------------------\n"); // debug
+	getenv(DEBUG_ENV_VAR) ? malloc_output_debug(alloc_b) : 0;
 
 	return ((unsigned char *)alloc_b + sizeof_header());
 }

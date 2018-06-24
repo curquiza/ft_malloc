@@ -20,7 +20,7 @@ static void	*ft_memcpy(void *dst, const void *src, size_t n)
 static void		free_debug(t_block * block)
 {
 	ft_putstr(B_GREEN"free on"DEF" - addr : "); // debug
-	ft_display_addr((unsigned long long)block); // debug
+	ft_putaddr((unsigned long long)block); // debug
 	ft_putstr("\n"); // debug
 }
 
