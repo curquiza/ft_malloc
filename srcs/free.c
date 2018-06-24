@@ -49,7 +49,7 @@ void	free(void *ptr)
 	b_to_free = find_block(ptr);
 	if (!b_to_free)
 	{
-		ft_putstr_fd("Fatal error : impossible to free this address.", 2);
+		ft_putstr_fd("Fatal error : impossible to free this address.\n", 2);
 		return ;
 	}
 	free_on(b_to_free);
