@@ -146,8 +146,8 @@ void	*malloc(size_t size)
 	if ((int)size < 0)
 		return (NULL);
 	new_size = get_aligned_size(size, 16);
-	getenv(DEBUG_ENV_VAR) ? malloc_input_debug(size, new_size) : 0;
 	zone_type_initialization(new_size);
+	getenv(DEBUG_ENV_VAR) ? malloc_input_debug(size, new_size) : 0;
 	alloc_b = find_or_extend(g_zone.current, new_size);
 	allocate_block(alloc_b, new_size);
 	getenv(DEBUG_ENV_VAR) ? malloc_output_debug(alloc_b) : 0;

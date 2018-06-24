@@ -7,7 +7,7 @@
 # include <stdbool.h>
 # include <stdlib.h>
 
-# define LITTLE_HEXA_BASE "0123456789ABCDEF"
+# define HEXA_BASE "0123456789ABCDEF"
 # define DEF "\033[0m"
 # define B_BLUE "\x1b[1;34m"
 # define B_GREEN "\x1b[1;32m"
