@@ -120,19 +120,16 @@ static void	zone_type_initialization(size_t size)
 {
 	if (size <= TINY_MAX)
 	{
-		// ft_putendl("TINY"); // debug
 		g_zone.type = TINY;
 		g_zone.current = &g_zone.tiny;
 	}
 	else if (size <= SMALL_MAX)
 	{
-		// ft_putendl("SMALL"); // debug
 		g_zone.type = SMALL;
 		g_zone.current = &g_zone.small;
 	}
 	else
 	{
-		// ft_putendl("LARGE"); // debug
 		g_zone.type = LARGE;
 		g_zone.current = &g_zone.large;
 	}
@@ -151,6 +148,5 @@ void	*malloc(size_t size)
 	alloc_b = find_or_extend(g_zone.current, new_size);
 	allocate_block(alloc_b, new_size);
 	getenv(DEBUG_ENV_VAR) ? malloc_output_debug(alloc_b) : 0;
-
 	return ((unsigned char *)alloc_b + sizeof_header());
 }
