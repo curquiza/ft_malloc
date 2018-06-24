@@ -160,6 +160,9 @@ void	test_defragm1(void)
 	b = malloc_basic_test(12);
 	free(a);
 	free(b);
+	ft_putstr("\n");
+	show_alloc_mem();
+	ft_putstr("\n");
 }
 
 void	test_defragm2(void)
@@ -174,6 +177,9 @@ void	test_defragm2(void)
 	free(c);
 	free(a);
 	free(b);
+	ft_putstr("\n");
+	show_alloc_mem();
+	ft_putstr("\n");
 }
 
 void	test_defragm3(void)
@@ -188,6 +194,9 @@ void	test_defragm3(void)
 	free(b);
 	free(c);
 	free(a);
+	ft_putstr("\n");
+	show_alloc_mem();
+	ft_putstr("\n");
 }
 
 void	test_defragm4(void)
@@ -201,6 +210,9 @@ void	test_defragm4(void)
 	c = malloc_basic_test(1);
 	free(b);
 	free(c);
+	ft_putstr("\n");
+	show_alloc_mem();
+	ft_putstr("\n");
 }
 
 int		main(void)
@@ -220,5 +232,6 @@ int		main(void)
 	test_defragm2();
 	test_defragm3();
 	test_defragm4();
+
 	return (0);
 }

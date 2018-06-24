@@ -1,5 +1,13 @@
 #include "dyn_alloc.h"
 
+static void	show_status(t_block *b)
+{
+	if (b->status == ALLOC)
+		ft_putstr("alloc\t");
+	else
+		ft_putstr("free\t");
+}
+
 static size_t display_blocks(t_block *blocks)
 {
 	unsigned long long	start;
@@ -9,10 +17,11 @@ static size_t display_blocks(t_block *blocks)
 	total = 0;
 	while (blocks)
 	{
-		if (blocks->status == ALLOC)
+		if (blocks->status == ALLOC || getenv(SHOW_MEM_FREE_ENV_VAR))
 		{
 			start = (unsigned long long)blocks + sizeof_header();
 			end = (unsigned long long)blocks + sizeof_header() + blocks->size;
+			getenv(SHOW_MEM_FREE_ENV_VAR) ? show_status(blocks) : 0;
 			ft_putaddr(start);
 			ft_putstr(" - ");
 			ft_putaddr(end);
