@@ -15,3 +15,10 @@ void	malloc_output_debug(t_block *b)
 	ft_putaddr_fd((unsigned long long)((char *)b + sizeof_header()), 2);
 	ft_putstr_fd("\n", 2);
 }
+
+void	free_debug(void *ptr)
+{
+	ft_putstr_fd(B_GREEN"FREE"DEF" - address : ", 2);
+	ft_putaddr_fd((unsigned long long)ptr, 2);
+	ft_putstr_fd("\n", 2);
+}

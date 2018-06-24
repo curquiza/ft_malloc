@@ -103,5 +103,6 @@ void	show_alloc_mem(void);
 */
 void	malloc_input_debug(size_t size, size_t aligned_size);
 void	malloc_output_debug(t_block *b);
+void	free_debug(void *ptr);
 
 #endif

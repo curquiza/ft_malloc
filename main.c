@@ -93,7 +93,7 @@ void	test_realloc1(void)
 	c[10] = '\0';
 	printf("c = %s\n", c);
 
-	show_alloc_mem();	
+	show_alloc_mem();
 }
 
 void	test_realloc2(void)
@@ -144,11 +144,11 @@ void	test_realloc3(void)
 int		main(void)
 {
 	test_only_malloc();
-	// ft_putstr("\n");
-	// test_malloc_free();
+	ft_putstr("\n");
+	test_malloc_free();
 	// test_malloc_free2();
 	// ft_putstr("\n");
-	
+
 	// test_realloc1();
 	// test_realloc2();
 	// test_realloc3();

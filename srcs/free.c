@@ -41,17 +41,13 @@ void	free(void *ptr)
 {
 	t_block		*b_to_free;
 
-	ft_putstr(B_GREEN"FREE"DEF" - addr : "); // debug
-	ft_putaddr((unsigned long long)ptr); // debug
-	ft_putstr("\n"); // debug
-
 	if (ptr == NULL)
 		return ;
+	getenv(DEBUG_ENV_VAR) ? free_debug(ptr) : 0;
 	b_to_free = find_block(ptr);
 	if (!b_to_free)
 	{
-		ft_putendl("Fatal error : impossible to free this address.");
-		// abort();
+		ft_putstr_fd("Fatal error : impossible to free this address.", 2);
 		return ;
 	}
 	free_on(b_to_free);

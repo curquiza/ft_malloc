@@ -17,12 +17,12 @@ static void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-static void		free_debug(t_block * block)
-{
-	ft_putstr(B_GREEN"free on"DEF" - addr : "); // debug
-	ft_putaddr((unsigned long long)block); // debug
-	ft_putstr("\n"); // debug
-}
+// static void		free_debug(t_block * block)
+// {
+// 	ft_putstr(B_GREEN"free on"DEF" - addr : "); // debug
+// 	ft_putaddr((unsigned long long)block); // debug
+// 	ft_putstr("\n"); // debug
+// }
 
 static t_block	*manage_reallocation(t_block *block, size_t size)
 {
@@ -36,7 +36,7 @@ static t_block	*manage_reallocation(t_block *block, size_t size)
 	tmp_type = g_zone.type;
 	if (tmp_type != LARGE)
 	{
-		free_debug(block); // debug
+		// free_debug(block); // debug
 		free_on(block);
 	}
 	new = malloc(size);
@@ -45,7 +45,7 @@ static t_block	*manage_reallocation(t_block *block, size_t size)
 		ft_memcpy((char *)new + sizeof_header(), tmp_data, tmp_size);
 	if (tmp_type == LARGE)
 	{
-		free_debug(block); // debug
+		// free_debug(block); // debug
 		free_on(block);
 	}
 	return (new);
