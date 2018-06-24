@@ -24,6 +24,8 @@ void	free_on(t_block *block)
 	{
 		if (left)
 			left->next = block->next;
+		else
+			g_zone.large = NULL;
 		if (right)
 			right->prev = block->prev;
 		munmap(block, block->size + sizeof_header());
