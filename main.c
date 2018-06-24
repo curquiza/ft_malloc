@@ -230,7 +230,7 @@ int		main(void)
 
 	test_defragm1();
 	test_defragm2();
-	// test_defragm3();
+	test_defragm3();
 	test_defragm4();
 
 	return (0);
