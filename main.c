@@ -151,17 +151,74 @@ void	test_realloc4(void)
 	show_alloc_mem();
 }
 
+void	test_defragm1(void)
+{
+	char	*a;
+	char	*b;
+
+	a = malloc_basic_test(89);
+	b = malloc_basic_test(12);
+	free(a);
+	free(b);
+}
+
+void	test_defragm2(void)
+{
+	char	*a;
+	char	*b;
+	char	*c;
+
+	a = malloc_basic_test(89);
+	b = malloc_basic_test(12);
+	c = malloc_basic_test(1);
+	free(c);
+	free(a);
+	free(b);
+}
+
+void	test_defragm3(void)
+{
+	char	*a;
+	char	*b;
+	char	*c;
+
+	a = malloc_basic_test(89);
+	b = malloc_basic_test(12);
+	c = malloc_basic_test(1);
+	free(b);
+	free(c);
+	free(a);
+}
+
+void	test_defragm4(void)
+{
+	char	*a;
+	char	*b;
+	char	*c;
+
+	a = malloc_basic_test(89);
+	b = malloc_basic_test(12);
+	c = malloc_basic_test(1);
+	free(b);
+	free(c);
+}
+
 int		main(void)
 {
-	test_only_malloc();
-	ft_putstr("\n");
-	test_malloc_free();
-	test_malloc_free2();
-	ft_putstr("\n");
+	// test_only_malloc();
+	// ft_putstr("\n");
+	// test_malloc_free();
+	// test_malloc_free2();
+	// ft_putstr("\n");
+	//
+	// test_realloc1();
+	// test_realloc2();
+	// test_realloc3();
+	// test_realloc4();
 
-	test_realloc1();
-	test_realloc2();
-	test_realloc3();
-	test_realloc4();
+	test_defragm1();
+	test_defragm2();
+	test_defragm3();
+	test_defragm4();
 	return (0);
 }
