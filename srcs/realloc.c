@@ -36,7 +36,7 @@ static t_block	*manage_reallocation(t_block *block, size_t size)
 	tmp_type = g_zone.type;
 	if (tmp_type != LARGE)
 	{
-		free_debug(block);
+		free_debug(block); // debug
 		free_on(block);
 	}
 	new = malloc(size);
@@ -45,7 +45,7 @@ static t_block	*manage_reallocation(t_block *block, size_t size)
 		ft_memcpy((char *)new + sizeof_header(), tmp_data, tmp_size);
 	if (tmp_type == LARGE)
 	{
-		free_debug(block);
+		free_debug(block); // debug
 		free_on(block);
 	}
 	return (new);
@@ -63,14 +63,14 @@ void	*realloc(void *ptr, size_t size)
 	b = find_block(ptr);
 	if (!b)
 	{
-		ft_putendl("Fatal error : impossible to realloc this address.");
+		// ft_putendl("Fatal error : impossible to realloc this address."); // debug
 		// abort();
 		return (NULL);
 	}
 	new_size = get_aligned_size(size, 16);
 	if (b->size >= new_size)
 	{
-		ft_putendl("Enough size already");
+		// ft_putendl("Enough size already"); // debug
 		return (ptr);
 	}
 	new_b = manage_reallocation(b, new_size);

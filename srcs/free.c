@@ -44,7 +44,7 @@ void	free(void *ptr)
 	ft_putstr(B_GREEN"FREE"DEF" - addr : "); // debug
 	ft_display_addr((unsigned long long)ptr); // debug
 	ft_putstr("\n"); // debug
-	
+
 	if (ptr == NULL)
 		return ;
 	b_to_free = find_block(ptr);
