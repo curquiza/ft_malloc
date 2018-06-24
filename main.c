@@ -85,12 +85,10 @@ void	test_realloc1(void)
 
 	b = realloc(a, 16);
 	printf("addr of b = %p\n", b);
-	// b[10] = '\0';
 	printf("b = %s\n", b);
 
 	c = realloc(b, 32);
 	printf("addr of c = %p\n", c);
-	// c[10] = '\0';
 	printf("c = %s\n", c);
 
 	show_alloc_mem();
