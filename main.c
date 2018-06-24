@@ -171,9 +171,9 @@ void	test_defragm2(void)
 	char	*b;
 	char	*c;
 
-	a = malloc_basic_test(89);
-	b = malloc_basic_test(12);
-	c = malloc_basic_test(1);
+	a = malloc_basic_test(654);
+	b = malloc_basic_test(687);
+	c = malloc_basic_test(965);
 	free(c);
 	free(a);
 	free(b);
@@ -188,9 +188,9 @@ void	test_defragm3(void)
 	char	*b;
 	char	*c;
 
-	a = malloc_basic_test(89);
-	b = malloc_basic_test(12);
-	c = malloc_basic_test(1);
+	a = malloc_basic_test(54155);
+	b = malloc_basic_test(154142);
+	c = malloc_basic_test(541551);
 	free(b);
 	free(c);
 	free(a);
@@ -205,9 +205,9 @@ void	test_defragm4(void)
 	char	*b;
 	char	*c;
 
-	a = malloc_basic_test(89);
-	b = malloc_basic_test(12);
-	c = malloc_basic_test(1);
+	a = malloc_basic_test(0);
+	b = malloc_basic_test(0);
+	c = malloc_basic_test(0);
 	free(b);
 	free(c);
 	ft_putstr("\n");
@@ -230,7 +230,7 @@ int		main(void)
 
 	test_defragm1();
 	test_defragm2();
-	test_defragm3();
+	// test_defragm3();
 	test_defragm4();
 
 	return (0);
