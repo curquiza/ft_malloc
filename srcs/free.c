@@ -45,7 +45,9 @@ void	free(void *ptr)
 
 	if (ptr == NULL)
 		return ;
-	getenv(DEBUG_ENV_VAR) ? free_debug(ptr) : 0;
+	g_zone.debug = "1";
+	// getenv(DEBUG_ENV_VAR) ? free_debug(ptr) : 0;
+	g_zone.debug ? free_debug(ptr) : 0;
 	b_to_free = find_block(ptr);
 	if (!b_to_free)
 	{

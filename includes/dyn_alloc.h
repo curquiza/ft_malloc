@@ -49,6 +49,7 @@ typedef struct	s_zone
 	t_block		*small;
 	t_block		*large;
 	t_block		**current;
+	char		*debug; // tmp
 }				t_zone;
 
 t_zone	g_zone;

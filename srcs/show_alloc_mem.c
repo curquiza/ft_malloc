@@ -17,11 +17,12 @@ static size_t display_blocks(t_block *blocks)
 	total = 0;
 	while (blocks)
 	{
-		if (blocks->status == ALLOC || getenv(SHOW_MEM_FREE_ENV_VAR))
-		{
+		// if (blocks->status == ALLOC || getenv(SHOW_MEM_FREE_ENV_VAR))
+		// {
 			start = (unsigned long long)blocks + sizeof_header();
 			end = (unsigned long long)blocks + sizeof_header() + blocks->size;
-			getenv(SHOW_MEM_FREE_ENV_VAR) ? show_status(blocks) : 0;
+			// getenv(SHOW_MEM_FREE_ENV_VAR) ? show_status(blocks) : 0;
+			show_status(blocks);
 			ft_putaddr(start);
 			ft_putstr(" - ");
 			ft_putaddr(end);
@@ -29,7 +30,7 @@ static size_t display_blocks(t_block *blocks)
 			ft_put_sizet((size_t)(end - start));
 			ft_putendl(" octets");
 			total += (size_t)(end - start);
-		}
+		// }
 		blocks = blocks->next;
 	}
 	return (total);
