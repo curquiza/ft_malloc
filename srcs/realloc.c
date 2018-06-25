@@ -60,13 +60,13 @@ void	*realloc(void *ptr, size_t size)
 	if (!ptr)
 	{
 		// getenv(DEBUG_ENV_VAR) ? realloc_call_debug() : 0;
-		// g_zone.debug ? realloc_call_debug() : 0;
+		g_zone.debug ? realloc_call_debug() : 0;
 		return (malloc(size));
 	}
 	b = find_block(ptr);
 	if (!b)
 	{
-		ft_putstr_fd("Fatal error : impossible to realloc this address.\n", 2); // debug
+		g_zone.debug ? ft_putstr_fd("Fatal error : impossible to realloc this address.\n", 2) : 0;
 		// ft_putstr("\n");
 		// show_alloc_mem();
 		// ft_putstr("\n");
