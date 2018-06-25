@@ -12,9 +12,9 @@ static void	put_type(void)
 
 void	malloc_input_debug(size_t size, size_t aligned_size)
 {
-	!getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(B_BLUE, 2) : 0;
+	// !getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(B_BLUE, 2) : 0;
 	ft_putstr_fd("MALLOC", 2);
-	!getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(DEF, 2) : 0;
+	// !getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(DEF, 2) : 0;
 	put_type();
 	ft_putstr_fd("\tinput size : ", 2);
 	ft_putnbr_fd(size, 2);
@@ -31,9 +31,9 @@ void	malloc_output_debug(t_block *b)
 
 void	free_debug(void *ptr)
 {
-	!getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(B_GREEN, 2) : 0;
+	// !getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(B_GREEN, 2) : 0;
 	ft_putstr_fd("FREE", 2);
-	!getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(DEF, 2) : 0;
+	// !getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(DEF, 2) : 0;
 	ft_putstr_fd("\t\tinput address : ", 2);
 	ft_putaddr_fd((unsigned long long)ptr, 2);
 	ft_putstr_fd("\n", 2);
@@ -41,9 +41,9 @@ void	free_debug(void *ptr)
 
 void	realloc_input_debug(void *ptr, size_t size)
 {
-	!getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(B_YELLOW, 2) : 0;
+	// !getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(B_YELLOW, 2) : 0;
 	ft_putstr_fd("REALLOC", 2);
-	!getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(DEF, 2) : 0;
+	// !getenv(NOCOLOR_ENV_VAR) ? ft_putstr_fd(DEF, 2) : 0;
 	ft_putstr_fd("\t\tinput size : ", 2);
 	ft_putnbr_fd(size, 2);
 	ft_putstr_fd(" - input address : ", 2);
