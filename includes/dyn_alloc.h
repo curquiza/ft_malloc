@@ -1,11 +1,12 @@
 #ifndef DYN_ALLOC_H
 # define DYN_ALLOC_H
 
-# include <unistd.h>
+# include <unistd.h> // attention
 # include <sys/mman.h>
-# include <stdio.h>
+# include <stdio.h> // attention
 # include <stdbool.h>
 # include <stdlib.h>
+# include <assert.h> // attention
 
 # define HEXA_BASE "0123456789ABCDEF"
 # define DEF "\033[0m"
