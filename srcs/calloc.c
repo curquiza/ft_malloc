@@ -16,7 +16,6 @@ void		*calloc(size_t count, size_t size)
 {
 	void	*alloc;
 
-	ft_putstr_fd("calloc\n", 2);
 	alloc = malloc(count * size);
 	if (alloc)
 		ft_bzero(alloc, count * size);

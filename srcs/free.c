@@ -43,25 +43,24 @@ void	free(void *ptr)
 {
 	t_block		*b_to_free;
 
-	ft_putstr_fd("free\n", 2);
 	if (ptr == NULL)
 		return ;
-	g_zone.debug = "1";
+	// g_zone.debug = "1";
 	// getenv(DEBUG_ENV_VAR) ? free_debug(ptr) : 0;
-	g_zone.debug ? free_debug(ptr) : 0;
+	// g_zone.debug ? free_debug(ptr) : 0;
 	b_to_free = find_block(ptr);
 	if (!b_to_free)
 	{
-		ft_putstr_fd("Fatal error : impossible to free this address.\n", 2);
-		ft_putstr("\n");
-		show_alloc_mem();
-		ft_putstr_fd("end free\n", 2);
-		ft_putstr("\n");
+		// ft_putstr_fd("Fatal error : impossible to free this address.\n", 2);
+		// ft_putstr("\n");
+		// show_alloc_mem();
+		// ft_putstr_fd("end free\n", 2);
+		// ft_putstr("\n");
 		return ;
 	}
 	free_on(b_to_free);
-	ft_putstr("\n");
-	show_alloc_mem();
-	ft_putstr_fd("end free\n", 2);
-	ft_putstr("\n");
+	// ft_putstr("\n");
+	// show_alloc_mem();
+	// ft_putstr_fd("end free\n", 2);
+	// ft_putstr("\n");
 }
