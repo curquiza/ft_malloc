@@ -85,15 +85,13 @@ void	test_realloc1(void)
 
 	b = realloc(a, 16);
 	printf("addr of b = %p\n", b);
-	b[10] = '\0';
 	printf("b = %s\n", b);
 
 	c = realloc(b, 32);
 	printf("addr of c = %p\n", c);
-	c[10] = '\0';
 	printf("c = %s\n", c);
 
-	show_alloc_mem();	
+	show_alloc_mem();
 }
 
 void	test_realloc2(void)
@@ -111,12 +109,10 @@ void	test_realloc2(void)
 
 	b = realloc(a, 8007);
 	printf("addr of b = %p\n", b);
-	b[15] = '\0';
 	printf("b = %s\n", b);
 
 	c = realloc(b, 7);
 	printf("addr of d = %p\n", c);
-	c[15] = '\0';
 	printf("c = %s\n", c);
 
 	show_alloc_mem();
@@ -129,28 +125,111 @@ void	test_realloc3(void)
 
 	a = malloc_basic_test(15);
 	printf("addr of a = %p\n", a);
-	a[15] = '\0';
-	printf("a = %s\n", a);
 
 	b = realloc(a, 600);
 	printf("addr of b = %p\n", b);
-	b[15] = '\0';
-	printf("b = %s\n", b);
 
 	show_alloc_mem();
 }
 
+void	test_realloc4(void)
+{
+	char *a;
+	char *b;
+	char *c;
+
+	a = malloc_basic_test(89003);
+	printf("addr of a = %p\n", a);
+
+	b = realloc(a, 1093838);
+	printf("addr of b = %p\n", b);
+
+	c = realloc(NULL, 12);
+	printf("addr of c = %p\n", c);
+	show_alloc_mem();
+}
+
+void	test_defragm1(void)
+{
+	char	*a;
+	char	*b;
+
+	a = malloc_basic_test(89);
+	b = malloc_basic_test(12);
+	free(a);
+	free(b);
+	ft_putstr("\n");
+	show_alloc_mem();
+	ft_putstr("\n");
+}
+
+void	test_defragm2(void)
+{
+	char	*a;
+	char	*b;
+	char	*c;
+
+	a = malloc_basic_test(654);
+	b = malloc_basic_test(687);
+	c = malloc_basic_test(965);
+	free(c);
+	free(a);
+	free(b);
+	ft_putstr("\n");
+	show_alloc_mem();
+	ft_putstr("\n");
+}
+
+void	test_defragm3(void)
+{
+	char	*a;
+	char	*b;
+	char	*c;
+
+	a = malloc_basic_test(54155);
+	b = malloc_basic_test(154142);
+	c = malloc_basic_test(541551);
+	free(b);
+	free(c);
+	free(a);
+	ft_putstr("\n");
+	show_alloc_mem();
+	ft_putstr("\n");
+}
+
+void	test_defragm4(void)
+{
+	char	*a;
+	char	*b;
+	char	*c;
+
+	a = malloc_basic_test(0);
+	b = malloc_basic_test(0);
+	c = malloc_basic_test(0);
+	free(b);
+	free(c);
+	ft_putstr("\n");
+	show_alloc_mem();
+	ft_putstr("\n");
+}
 
 int		main(void)
 {
-	test_only_malloc();
+	// test_only_malloc();
 	// ft_putstr("\n");
 	// test_malloc_free();
 	// test_malloc_free2();
 	// ft_putstr("\n");
-	
+	//
 	// test_realloc1();
 	// test_realloc2();
 	// test_realloc3();
+	// test_realloc4();
+
+	test_defragm1();
+	test_defragm2();
+	test_defragm3();
+	test_defragm4();
+
 	return (0);
 }

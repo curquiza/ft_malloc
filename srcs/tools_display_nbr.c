@@ -1,10 +1,5 @@
 #include "dyn_alloc.h"
 
-static void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
 void		ft_putnbr(int n)
 {
 	if (n / 10 == 0 && n % 10 < 0)
@@ -24,6 +19,25 @@ void		ft_putnbr(int n)
 	}
 }
 
+void		ft_putnbr_fd(int n, int fd)
+{
+	if (n / 10 == 0 && n % 10 < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd(-1 * (n % 10) + '0', fd);
+	}
+	else if (n / 10 == 0)
+		ft_putchar_fd(n % 10 + '0', fd);
+	else
+	{
+		ft_putnbr_fd(n / 10, fd);
+		if (n < 0)
+			ft_putchar_fd(-1 * (n % 10) + '0', fd);
+		else
+			ft_putchar_fd(n % 10 + '0', fd);
+	}
+}
+
 void		ft_put_sizet(size_t n)
 {
 	if (n / 10 == 0)
@@ -35,7 +49,7 @@ void		ft_put_sizet(size_t n)
 	}
 }
 
-void		ft_putnbr2(char *s, int nbr)
+void		ft_putnbr2(char *s, int nbr) // non-official
 {
 	ft_putstr(s);
 	ft_putnbr(nbr);

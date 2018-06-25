@@ -5,16 +5,18 @@ endif
 NAME = libft_malloc_$(HOSTTYPE).so
 LINK_NAME = libft_malloc.so
 
-CC = gcc -Wall -Wextra -Werror
+CC = gcc -Wall -Wextra -Werror -g
 #CC = gcc -Wall -Wextra -Werror -g -fsanitize=address
 
 C_DIR = srcs
 C_FILES = $(addprefix $(C_DIR)/, \
+			tools_display_char.c \
 			tools_display_nbr.c \
 			tools_display_str.c \
 			tools_display_hexa.c \
 			tools_str.c \
 			tools_basics.c \
+			debug.c \
 			find_block.c \
 			show_alloc_mem.c \
 			realloc.c \

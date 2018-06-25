@@ -95,7 +95,7 @@ void	display_all_blocks(t_block *blocks)
 	{
 		ft_putnbr2("i = ", i);
 		ft_putstr("address = ");
-		ft_display_addr((unsigned long long)blocks);
+		ft_putaddr((unsigned long long)blocks);
 		ft_putstr("\n");
 		ft_putnbr2("size of header = ", sizeof_header());
 		ft_putnbr2("size of block (without header) = ", blocks->size);
@@ -120,22 +120,20 @@ static void	zone_type_initialization(size_t size)
 {
 	if (size <= TINY_MAX)
 	{
-		// ft_putendl("TINY"); // debug
 		g_zone.type = TINY;
 		g_zone.current = &g_zone.tiny;
 	}
 	else if (size <= SMALL_MAX)
 	{
-		// ft_putendl("SMALL"); // debug
 		g_zone.type = SMALL;
 		g_zone.current = &g_zone.small;
 	}
 	else
 	{
-		// ft_putendl("LARGE"); // debug
 		g_zone.type = LARGE;
 		g_zone.current = &g_zone.large;
 	}
+	g_zone.debug = "1";
 }
 
 void	*malloc(size_t size)
@@ -143,17 +141,20 @@ void	*malloc(size_t size)
 	t_block		*alloc_b;
 	size_t		new_size;
 
+	ft_putstr_fd("malloc\n", 2);
 	if ((int)size < 0)
 		return (NULL);
 	new_size = get_aligned_size(size, 16);
-	// ft_putnbr2("input size = ", size); // debug
-	ft_putnbr2(B_BLUE"MALLOC"DEF" - size ", new_size); // debug
 	zone_type_initialization(new_size);
+	// getenv(DEBUG_ENV_VAR) ? malloc_input_debug(size, new_size) : 0;
+	g_zone.debug ? malloc_input_debug(size, new_size) : 0;
 	alloc_b = find_or_extend(g_zone.current, new_size);
 	allocate_block(alloc_b, new_size);
-	// ft_putendl(""); // debug
-	// display_all_blocks(*g_zone.current); // debug
-	// ft_putendl("--- END MALLOC ------------------\n"); // debug
-
-	return ((unsigned char *)alloc_b + sizeof_header());
+	// getenv(DEBUG_ENV_VAR) ? malloc_output_debug(alloc_b) : 0;
+	g_zone.debug ? malloc_output_debug(alloc_b) : 0;
+	ft_putstr("\n");
+	show_alloc_mem();
+	ft_putstr_fd("end malloc\n", 2);
+	ft_putstr("\n");
+	return ((char *)alloc_b + sizeof_header());
 }
