@@ -141,6 +141,7 @@ void	*malloc(size_t size)
 	t_block		*alloc_b;
 	size_t		new_size;
 
+	ft_putstr_fd("malloc\n", 2);
 	if ((int)size < 0)
 		return (NULL);
 	new_size = get_aligned_size(size, 16);
@@ -151,8 +152,9 @@ void	*malloc(size_t size)
 	allocate_block(alloc_b, new_size);
 	// getenv(DEBUG_ENV_VAR) ? malloc_output_debug(alloc_b) : 0;
 	g_zone.debug ? malloc_output_debug(alloc_b) : 0;
-	// ft_putstr("\n");
-	// show_alloc_mem();
-	// ft_putstr("\n");
-	return ((unsigned char *)alloc_b + sizeof_header());
+	ft_putstr("\n");
+	show_alloc_mem();
+	ft_putstr_fd("end malloc\n", 2);
+	ft_putstr("\n");
+	return ((char *)alloc_b + sizeof_header());
 }
