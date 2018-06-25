@@ -80,32 +80,31 @@ static t_block	*split_block(t_block *block, size_t size)
 	new_block->prev = block;
 	new_block->next = block->next;
 	block->size = size;
-	// block->status = ALLOC;
 	block->next = new_block;
 	return(block);
 }
 
-void	display_all_blocks(t_block *blocks)
-{
-	int		i;
-
-	ft_putendl("DISPLAY ALL BLOCKS :");
-	i = 1;
-	while (blocks)
-	{
-		ft_putnbr2("i = ", i);
-		ft_putstr("address = ");
-		ft_putaddr((unsigned long long)blocks);
-		ft_putstr("\n");
-		ft_putnbr2("size of header = ", sizeof_header());
-		ft_putnbr2("size of block (without header) = ", blocks->size);
-		ft_putnbr2("size totale = ", blocks->size + sizeof_header());
-		ft_putendl2("status = ", blocks->status == FREE ? "FREE" : "ALLOC");
-		ft_putendl("---------");
-		blocks = blocks->next;
-		i++;
-	}
-}
+// void	display_all_blocks(t_block *blocks)
+// {
+// 	int		i;
+//
+// 	ft_putendl("DISPLAY ALL BLOCKS :");
+// 	i = 1;
+// 	while (blocks)
+// 	{
+// 		ft_putnbr2("i = ", i);
+// 		ft_putstr("address = ");
+// 		ft_putaddr((unsigned long long)blocks);
+// 		ft_putstr("\n");
+// 		ft_putnbr2("size of header = ", sizeof_header());
+// 		ft_putnbr2("size of block (without header) = ", blocks->size);
+// 		ft_putnbr2("size totale = ", blocks->size + sizeof_header());
+// 		ft_putendl2("status = ", blocks->status == FREE ? "FREE" : "ALLOC");
+// 		ft_putendl("---------");
+// 		blocks = blocks->next;
+// 		i++;
+// 	}
+// }
 
 static void	allocate_block(t_block *block, size_t size)
 {
