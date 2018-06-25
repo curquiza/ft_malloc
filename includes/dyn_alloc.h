@@ -97,6 +97,11 @@ void	free(void *ptr);
 void	*realloc(void *ptr, size_t size);
 
 /*
+** CALLOC
+*/
+void	*calloc(size_t count, size_t size);
+
+/*
 ** SHOW ALLOC MEM
 */
 void	show_alloc_mem(void);

@@ -21,6 +21,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 			show_alloc_mem.c \
 			realloc.c \
 			free.c \
+			calloc.c \
 			malloc.c)
 
 O_DIR = objs
