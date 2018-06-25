@@ -67,25 +67,16 @@ void	*realloc(void *ptr, size_t size)
 	if (!b)
 	{
 		g_zone.debug ? ft_putstr_fd("Fatal error : impossible to realloc this address.\n", 2) : 0;
-		// ft_putstr("\n");
-		// show_alloc_mem();
-		// ft_putstr("\n");
-		// return (NULL);
-		return (ptr);
+		return (NULL);
+		// return (ptr);
 	}
 	new_size = get_aligned_size(size, 16);
 	if (b->size >= new_size)
 	{
 		// getenv(DEBUG_ENV_VAR) ? realloc_enough_space_debug() : 0;
 		g_zone.debug ? realloc_enough_space_debug() : 0;
-		// ft_putstr("\n");
-		// show_alloc_mem();
-		// ft_putstr("\n");
 		return (ptr);
 	}
 	new_b = manage_reallocation(b, new_size);
-	// ft_putstr("\n");
-	// show_alloc_mem();
-	// ft_putstr("\n");
 	return ((char *)new_b + sizeof_header());
 }
