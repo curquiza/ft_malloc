@@ -49,7 +49,8 @@ typedef struct	s_zone
 	t_block		*small;
 	t_block		*large;
 	t_block		**current;
-	char		*debug; // tmp
+	int			debug; // tmp
+	// char		*debug; // tmp
 }				t_zone;
 
 t_zone	g_zone;
@@ -73,6 +74,8 @@ size_t	ft_strlen(const char *s);
 size_t	get_aligned_size(size_t size, int multiple);
 int		sizeof_header(void);
 int		page_size(void);
+
+void	init_debug(void);
 
 // NON-OFFICIAL DEBUGING FUNCTION
 void	ft_putnbr2(char *s, int nbr);

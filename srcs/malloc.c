@@ -133,7 +133,6 @@ static void	zone_type_initialization(size_t size)
 		g_zone.type = LARGE;
 		g_zone.current = &g_zone.large;
 	}
-	g_zone.debug = "1";
 }
 
 void	*malloc(size_t size)
@@ -141,16 +140,17 @@ void	*malloc(size_t size)
 	t_block		*alloc_b;
 	size_t		new_size;
 
+	init_debug();
 	if ((int)size < 0)
 		return (NULL);
 	new_size = get_aligned_size(size, 16);
 	zone_type_initialization(new_size);
 	// getenv(DEBUG_ENV_VAR) ? malloc_input_debug(size, new_size) : 0;
-	// g_zone.debug ? malloc_input_debug(size, new_size) : 0;
+	g_zone.debug ? malloc_input_debug(size, new_size) : 0;
 	alloc_b = find_or_extend(g_zone.current, new_size);
 	allocate_block(alloc_b, new_size);
 	// getenv(DEBUG_ENV_VAR) ? malloc_output_debug(alloc_b) : 0;
-	// g_zone.debug ? malloc_output_debug(alloc_b) : 0;
+	g_zone.debug ? malloc_output_debug(alloc_b) : 0;
 	// ft_putstr("\n");
 	// show_alloc_mem();
 	// ft_putstr_fd("end malloc\n", 2);

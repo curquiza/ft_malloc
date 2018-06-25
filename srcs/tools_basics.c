@@ -17,3 +17,8 @@ int		page_size(void)
 {
 	return (getpagesize());
 }
+
+void	init_debug(void)
+{
+	g_zone.debug = 0;
+}
