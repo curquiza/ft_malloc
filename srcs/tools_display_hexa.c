@@ -28,6 +28,13 @@ void	ft_putaddr_fd(unsigned long long int n, int fd)
 	}
 }
 
+void	ft_putaddr2(char *s, unsigned long long int n) // non-official
+{
+	ft_putstr(s);
+	ft_putaddr(n);
+	ft_putstr("\n");
+}
+
 // void	ft_display_hex_byte(unsigned char c)
 // {
 // 	char	*base;
