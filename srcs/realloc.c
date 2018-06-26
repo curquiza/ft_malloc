@@ -17,11 +17,11 @@ static void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-static t_block	*manage_reallocation(t_block *block, size_t size)
+static void	*manage_reallocation(t_block *block, size_t size)
 {
-	t_block		*new;
+	char		*new;
 	size_t		tmp_size;
-	char *		tmp_data;
+	char 		*tmp_data;
 	enum e_type	tmp_type;
 
 	tmp_size = block->size;
@@ -35,10 +35,9 @@ static t_block	*manage_reallocation(t_block *block, size_t size)
 	}
 	// getenv(DEBUG_ENV_VAR) ? realloc_call_debug() : 0;
 	g_zone.debug ? realloc_call_debug() : 0;
-	new = malloc(size);
-	new = (t_block *)((char *)new - sizeof_header());
-	if (new != block)
-		ft_memcpy((char *)new + sizeof_header(), tmp_data, tmp_size);
+	new = (char *)malloc(size);
+	assert(size >= tmp_size);
+	ft_memcpy(new, tmp_data, tmp_size);
 	if (tmp_type == LARGE)
 	{
 		// getenv(DEBUG_ENV_VAR) ? realloc_free_debug(block) : 0;
@@ -52,7 +51,6 @@ void	*realloc(void *ptr, size_t size)
 {
 	size_t		new_size;
 	t_block		*b;
-	t_block		*new_b;
 
 	init_debug();
 	// getenv(DEBUG_ENV_VAR) ? realloc_input_debug(ptr, size) : 0;
@@ -77,6 +75,5 @@ void	*realloc(void *ptr, size_t size)
 		g_zone.debug ? realloc_enough_space_debug() : 0;
 		return (ptr);
 	}
-	new_b = manage_reallocation(b, new_size);
-	return ((char *)new_b + sizeof_header());
+	return (manage_reallocation(b, new_size));
 }

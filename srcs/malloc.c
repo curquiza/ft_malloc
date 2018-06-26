@@ -19,14 +19,10 @@ static t_block	*extend_heap(size_t size, t_block *previous)
 	size_t	mmap_size;
 
 	mmap_size = get_extend_size(size);
-	// ft_putendl("EXTEND HEAP"); // debug
-	// ft_putnbr2("Size needed = size + sizeof_header = ", size + sizeof_header()); // debug
-	// ft_putnbr2("mmap_size = ", mmap_size); // debug
 	b = mmap(0, mmap_size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
-	b->size = mmap_size - sizeof_header();
-	// if (size > b->size) // debug
-		// ft_putendl("Extend size error !"); // debug
 	b->status = FREE;
+	b->size = mmap_size - sizeof_header();
+	// assert(size <= b->size);
 	b->next = NULL;
 	b->prev = previous;
 	if (previous)
@@ -71,17 +67,21 @@ static t_block	*find_or_extend(t_block **blocks, size_t size)
 static t_block	*split_block(t_block *block, size_t size)
 {
 	t_block		*new_block;
+	t_block		*right;
 	size_t		total_size;
 
+	right = block->next;
 	total_size = block->size + sizeof_header();
-	new_block = (t_block *)((unsigned char *)block + sizeof_header() + size);
+	new_block = (t_block *)((char *)block + sizeof_header() + size);
 	new_block->size = total_size - size - sizeof_header() * 2;
 	new_block->status = FREE;
 	new_block->prev = block;
 	new_block->next = block->next;
 	block->size = size;
 	block->next = new_block;
-	return(block);
+	if (right)
+		right->prev = new_block;
+	return (block);
 }
 
 // void	display_all_blocks(t_block *blocks)
@@ -111,8 +111,7 @@ static void	allocate_block(t_block *block, size_t size)
 	if (g_zone.type != LARGE && block->size > size + sizeof_header()) //j'ai la place de mettre un header si je split
 		split_block(block, size);
 	block->status = ALLOC;
-	// if (size > block->size) // debug
-		// ft_putendl("Split size error"); // debug
+	// assert(size <= block->size);
 }
 
 static void	zone_type_initialization(size_t size)
