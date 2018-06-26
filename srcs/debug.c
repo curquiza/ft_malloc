@@ -67,3 +67,11 @@ void	realloc_enough_space_debug(void)
 	realloc_call_debug();
 	ft_putstr_fd("enough space\n", 2);
 }
+
+void	realloc_return_value_debug(char *new)
+{
+	realloc_call_debug();
+	ft_putstr("return value -> ");
+	ft_putaddr((unsigned long long)new);
+	ft_putstr("\n");
+}

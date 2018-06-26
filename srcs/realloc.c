@@ -44,6 +44,7 @@ static void	*manage_reallocation(t_block *block, size_t size)
 		g_zone.debug ? realloc_free_debug(block) : 0;
 		free_on(block);
 	}
+	g_zone.debug ? realloc_return_value_debug(new) : 0;
 	return (new);
 }
 
