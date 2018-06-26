@@ -5,7 +5,7 @@
 # include <sys/mman.h>
 # include <stdio.h> // attention
 # include <stdbool.h>
-# include <stdlib.h>
+# include <stdlib.h> // attention ?
 # include <assert.h> // attention
 
 # define HEXA_BASE "0123456789ABCDEF"
@@ -14,8 +14,10 @@
 # define B_GREEN "\x1b[1;32m"
 # define B_YELLOW "\x1b[1;33m"
 
+// # define TINY_MAX 2048 // 10 pages allouées (avec headers)
 # define TINY_MAX 352 // 10 pages allouées (avec headers)
 # define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?
+// # define ZONE_ALLOC_NB 1
 # define ZONE_ALLOC_NB 100
 
 # define SHOW_MEM_FREE_ENV_VAR "SHOW_MEM_FREE"
@@ -81,6 +83,7 @@ void	init_debug(void);
 // NON-OFFICIAL DEBUGING FUNCTION
 void	ft_putnbr2(char *s, int nbr);
 void	ft_putendl2(char *s1, char *s2);
+void	ft_putaddr2(char *s, unsigned long long int n);
 // void	ft_putendl2_fd(char *s1, char *s2, int fd);
 
 /*
