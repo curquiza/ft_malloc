@@ -19,6 +19,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 			env_var.c \
 			histo_malloc_free.c \
 			histo_realloc.c \
+			histo_calloc.c \
 			find_block.c \
 			show_alloc_mem.c \
 			realloc.c \

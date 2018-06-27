@@ -126,5 +126,7 @@ void	realloc_input_debug(void *ptr, size_t size);
 void	realloc_free_debug(t_block *b);
 void	realloc_call_debug(void);
 void	realloc_enough_space_debug(void);
+void	calloc_input_debug(size_t count, size_t size);
+void	calloc_call_debug(void);
 
 #endif

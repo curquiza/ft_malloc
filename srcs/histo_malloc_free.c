@@ -3,7 +3,7 @@
 static void	put_type(void)
 {
 	if (g_zone.type == TINY)
-		ft_putstr_fd(" TINY", 2);
+		ft_putstr_fd(" TINY ", 2);
 	else if (g_zone.type == SMALL)
 		ft_putstr_fd(" SMALL", 2);
 	else
