@@ -129,4 +129,9 @@ void	realloc_enough_space_debug(void);
 void	calloc_input_debug(size_t count, size_t size);
 void	calloc_call_debug(void);
 
+/*
+** HEX DUMP
+*/
+void	hex_dump(void *addr, size_t size);
+
 #endif

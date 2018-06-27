@@ -20,6 +20,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 			histo_malloc_free.c \
 			histo_realloc.c \
 			histo_calloc.c \
+			hex_dump.c \
 			find_block.c \
 			show_alloc_mem.c \
 			realloc.c \

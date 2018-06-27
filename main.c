@@ -213,6 +213,39 @@ void	test_defragm4(void)
 	ft_putstr("\n");
 }
 
+void	test_hex_dump1(void)
+{
+	char	*a;
+
+	a = malloc(23);
+	a[0] = 12;
+	a[22] = 56;
+	a[12] = 'c';
+	hex_dump(a, 23);
+}
+
+void	test_hex_dump2(void)
+{
+	char	*a;
+
+	a = malloc(32);
+	a[0] = 12;
+	a[22] = 56;
+	a[6] = 'a';
+	a[7] = '*';
+	hex_dump(a, 32);
+}
+
+void	test_hex_dump3(void)
+{
+	int		*a;
+	int		b;
+
+	b = 12;
+	a = &b;
+	hex_dump(a, 8);
+}
+
 int		main(void)
 {
 	// test_only_malloc();
@@ -226,10 +259,16 @@ int		main(void)
 	// test_realloc3();
 	// test_realloc4();
 
-	test_defragm1();
-	test_defragm2();
-	test_defragm3();
-	test_defragm4();
+	// test_defragm1();
+	// test_defragm2();
+	// test_defragm3();
+	// test_defragm4();
+
+	test_hex_dump1();
+	ft_putstr("\n");
+	test_hex_dump2();
+	ft_putstr("\n");
+	test_hex_dump3();
 
 	return (0);
 }
