@@ -9,10 +9,10 @@
 # include <assert.h> // attention
 
 # define HEXA_BASE "0123456789ABCDEF"
-# define DEF "\033[0m"
-# define B_BLUE "\x1b[1;34m"
-# define B_GREEN "\x1b[1;32m"
-# define B_YELLOW "\x1b[1;33m"
+# define DEF "\033[0m" // enlever
+# define B_BLUE "\x1b[1;34m" // enlever
+# define B_GREEN "\x1b[1;32m" // enlever
+# define B_YELLOW "\x1b[1;33m" // enlever
 
 # define TINY_MAX 352 // 10 pages allouées (avec headers)
 # define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?
@@ -50,7 +50,8 @@ typedef struct	s_zone
 	t_block		*small;
 	t_block		*large;
 	t_block		**current;
-	int			debug; // tmp
+	int			debug;
+	int			get_debug;
 	int			show_alloc_mem; //tmp
 }				t_zone;
 
