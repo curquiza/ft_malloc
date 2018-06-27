@@ -20,6 +20,8 @@ static t_block	*extend_heap(size_t size, t_block *previous)
 
 	mmap_size = get_extend_size(size);
 	b = mmap(0, mmap_size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+	if (b == MAP_FAILED)
+		return (NULL);
 	b->status = FREE;
 	b->size = mmap_size - sizeof_header();
 	// assert(size <= b->size);
@@ -146,6 +148,8 @@ void	*malloc(size_t size)
 	// getenv(DEBUG_ENV_VAR) ? malloc_input_debug(size, new_size) : 0;
 	g_zone.debug ? malloc_input_debug(size, new_size) : 0;
 	alloc_b = find_or_extend(g_zone.current, new_size);
+	if (!alloc_b)
+		return (NULL);
 	allocate_block(alloc_b, new_size);
 	// getenv(DEBUG_ENV_VAR) ? malloc_output_debug(alloc_b) : 0;
 	g_zone.debug ? malloc_output_debug(alloc_b) : 0;
