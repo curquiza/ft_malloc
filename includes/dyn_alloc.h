@@ -14,15 +14,13 @@
 # define B_GREEN "\x1b[1;32m"
 # define B_YELLOW "\x1b[1;33m"
 
-// # define TINY_MAX 2048 // 10 pages allouées (avec headers)
 # define TINY_MAX 352 // 10 pages allouées (avec headers)
 # define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?
-// # define ZONE_ALLOC_NB 1
 # define ZONE_ALLOC_NB 100
 
 # define SHOW_MEM_FREE_ENV_VAR "SHOW_MEM_FREE"
-# define DEBUG_ENV_VAR "FT_MALLOC_DEBUG"
-# define NOCOLOR_ENV_VAR "FT_MALLOC_NOCOLOR"
+# define DEBUG_ENV_VAR "ALLOC42_DEBUG"
+// # define NOCOLOR_ENV_VAR "ALLOC42_NOCOLOR"
 
 enum	e_status
 {
