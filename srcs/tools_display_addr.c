@@ -34,15 +34,3 @@ void	ft_putaddr2(char *s, unsigned long long int n) // non-official
 	ft_putaddr(n);
 	ft_putstr("\n");
 }
-
-// void	ft_display_hex_byte(unsigned char c)
-// {
-// 	char	*base;
-//
-// 	base = HEXA_BASE;
-// 	// ft_putstr("0x");
-// 	ft_putchar(base[c / 16]);
-// 	c = c / 16;
-// 	ft_putchar(base[c % 16]);
-// 	// ft_putchar('\n');
-// }

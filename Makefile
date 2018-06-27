@@ -13,7 +13,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 			tools_display_char.c \
 			tools_display_nbr.c \
 			tools_display_str.c \
-			tools_display_hexa.c \
+			tools_display_addr.c \
 			tools_str.c \
 			tools_basics.c \
 			env_var.c \
