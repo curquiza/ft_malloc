@@ -42,6 +42,12 @@ void	free_on(t_block *block)
 		if (left && left->status == FREE)
 			merge_free_blocks(left, block);
 	}
+	if (g_zone.show_alloc_mem == 1)
+	{
+		ft_putstr("\n");
+		show_alloc_mem();
+		ft_putstr("\n");
+	}
 }
 
 void	free(void *ptr)

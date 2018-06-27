@@ -45,6 +45,12 @@ static void	*manage_reallocation(t_block *block, size_t size)
 		free_on(block);
 	}
 	g_zone.debug ? realloc_return_value_debug(new) : 0;
+	if (g_zone.show_alloc_mem == 1)
+	{
+		ft_putstr("\n");
+		show_alloc_mem();
+		ft_putstr("\n");
+	}
 	return (new);
 }
 

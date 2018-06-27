@@ -20,5 +20,6 @@ int		page_size(void)
 
 void	init_debug(void)
 {
-	g_zone.debug = 0;
+	g_zone.debug = 1;
+	g_zone.show_alloc_mem = 1;
 }

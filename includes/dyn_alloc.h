@@ -53,7 +53,7 @@ typedef struct	s_zone
 	t_block		*large;
 	t_block		**current;
 	int			debug; // tmp
-	// char		*debug; // tmp
+	int			show_alloc_mem; //tmp
 }				t_zone;
 
 t_zone	g_zone;
