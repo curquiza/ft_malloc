@@ -72,7 +72,6 @@ size_t	get_aligned_size(size_t size, int multiple);
 int		sizeof_header(void);
 int		page_size(void);
 
-void	init_debug(void);
 
 // NON-OFFICIAL DEBUGING FUNCTION
 void	ft_putnbr2(char *s, int nbr);
@@ -108,7 +107,12 @@ void	*calloc(size_t count, size_t size);
 void	show_alloc_mem(void);
 
 /*
-** DEBUG
+** ENV VARIABLES
+*/
+void	env_var_initialization(void);
+
+/*
+** HISTO
 */
 void	malloc_input_debug(size_t size, size_t aligned_size);
 void	malloc_output_debug(t_block *b);

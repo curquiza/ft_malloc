@@ -54,7 +54,7 @@ void	free(void *ptr)
 {
 	t_block		*b_to_free;
 
-	init_debug();
+	env_var_initialization();
 	if (ptr == NULL)
 		return ;
 	g_zone.histo ? free_debug(ptr) : 0;

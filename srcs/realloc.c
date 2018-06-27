@@ -103,7 +103,7 @@ void	*realloc(void *ptr, size_t size)
 	size_t		new_size;
 	t_block		*b;
 
-	init_debug();
+	env_var_initialization();
 	g_zone.histo ? realloc_input_debug(ptr, size) : 0;
 	if (!ptr)
 	{

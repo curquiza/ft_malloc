@@ -140,7 +140,7 @@ void	*malloc(size_t size)
 	t_block		*alloc_b;
 	size_t		new_size;
 
-	init_debug();
+	env_var_initialization();
 	if ((int)size < 0)
 		return (NULL);
 	new_size = get_aligned_size(size, 16);
