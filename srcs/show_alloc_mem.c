@@ -36,6 +36,8 @@ static size_t display_blocks(t_block *blocks)
 				ft_putaddr((unsigned long long)blocks->prev);
 				ft_putstr(" - next : ");
 				ft_putaddr((unsigned long long)blocks->next);
+				ft_putstr(" - block : ");
+				ft_putaddr((unsigned long long)blocks);
 				ft_putendl("");
 			}
 			else
