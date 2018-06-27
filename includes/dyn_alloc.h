@@ -18,7 +18,7 @@
 # define ZONE_ALLOC_NB 100
 
 # define HISTO_ENV_VAR "ALLOC42_HISTO"
-# define SHOW_MEM_FREE_ENV_VAR "SHOW_MEM_FREE"
+# define SHOW_FREE_ENV_VAR "ALLOC42_SHOW_FREE"
 
 enum	e_status
 {
@@ -50,6 +50,8 @@ typedef struct	s_zone
 	t_block		**current;
 	int			histo;
 	int			get_histo;
+	int			show_free;
+	int			get_show_free;
 	int			show_alloc_mem; //tmp
 }				t_zone;
 
