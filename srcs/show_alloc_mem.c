@@ -23,7 +23,6 @@ static size_t display_blocks(t_block *blocks)
 		// {
 			start = (char *)blocks + sizeof_header();
 			end = (char *)blocks + sizeof_header() + blocks->size;
-			// getenv(SHOW_MEM_FREE_ENV_VAR) ? show_status(blocks) : 0;
 			show_status(blocks);
 			ft_putaddr((unsigned long long)start);
 			ft_putstr(" - ");

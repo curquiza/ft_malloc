@@ -10,6 +10,9 @@
 
 # define HEXA_BASE "0123456789ABCDEF"
 
+# define IMP_TO_FREE_MSG "  >> impossible to free this address.\n"
+# define IMP_TO_REALLOC_MSG "  >> impossible to realloc this address.\n"
+
 # define TINY_MAX 352 // 10 pages allouées (avec headers)
 # define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?
 # define ZONE_ALLOC_NB 100

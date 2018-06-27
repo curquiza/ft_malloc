@@ -61,7 +61,7 @@ void	free(void *ptr)
 	b_to_free = find_block(ptr);
 	if (!b_to_free)
 	{
-		g_zone.histo ? ft_putstr_fd("Fatal error : impossible to free this address.\n", 2) : 0;
+		g_zone.histo ? ft_putstr_fd(IMP_TO_FREE_MSG, 2) : 0;
 		return ;
 	}
 	free_on(b_to_free);

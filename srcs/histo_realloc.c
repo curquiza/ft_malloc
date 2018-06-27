@@ -24,5 +24,5 @@ void	realloc_free_debug(t_block *b)
 void	realloc_enough_space_debug(void)
 {
 	realloc_call_debug();
-	ft_putstr_fd("ENOUGH SPACE\n", 2);
+	ft_putstr_fd("enough space\n", 2);
 }

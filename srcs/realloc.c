@@ -113,7 +113,7 @@ void	*realloc(void *ptr, size_t size)
 	b = find_block(ptr);
 	if (!b)
 	{
-		g_zone.histo ? ft_putstr_fd("Fatal error : impossible to realloc this address.\n", 2) : 0;
+		g_zone.histo ? ft_putstr_fd(IMP_TO_REALLOC_MSG, 2) : 0;
 		return (NULL);
 	}
 	new_size = get_aligned_size(size, 16);
