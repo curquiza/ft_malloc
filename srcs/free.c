@@ -42,27 +42,26 @@ void	free_on(t_block *block)
 		if (left && left->status == FREE)
 			merge_free_blocks(left, block);
 	}
-	if (g_zone.show_alloc_mem == 1)
-	{
-		ft_putstr("\n");
-		show_alloc_mem();
-		ft_putstr("\n");
-	}
+	if (g_zone.show_alloc_mem == 1) //debug
+	{ //debug
+		ft_putstr("\n"); //debug
+		show_alloc_mem(); //debug
+		ft_putstr("\n"); //debug
+	} //debug
 }
 
 void	free(void *ptr)
 {
 	t_block		*b_to_free;
 
-	init_debug();
+	env_var_initialization();
 	if (ptr == NULL)
 		return ;
-	// getenv(DEBUG_ENV_VAR) ? free_debug(ptr) : 0;
-	g_zone.debug ? free_debug(ptr) : 0;
+	g_zone.histo ? free_debug(ptr) : 0;
 	b_to_free = find_block(ptr);
 	if (!b_to_free)
 	{
-		g_zone.debug ? ft_putstr_fd("Fatal error : impossible to free this address.\n", 2) : 0;
+		g_zone.histo ? ft_putstr_fd(IMP_TO_FREE_MSG, 2) : 0;
 		return ;
 	}
 	free_on(b_to_free);

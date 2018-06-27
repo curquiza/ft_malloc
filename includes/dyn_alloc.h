@@ -9,20 +9,16 @@
 # include <assert.h> // attention
 
 # define HEXA_BASE "0123456789ABCDEF"
-# define DEF "\033[0m"
-# define B_BLUE "\x1b[1;34m"
-# define B_GREEN "\x1b[1;32m"
-# define B_YELLOW "\x1b[1;33m"
 
-// # define TINY_MAX 2048 // 10 pages allouées (avec headers)
+# define IMP_TO_FREE_MSG "  >> impossible to free this address.\n"
+# define IMP_TO_REALLOC_MSG "  >> impossible to realloc this address.\n"
+
 # define TINY_MAX 352 // 10 pages allouées (avec headers)
 # define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?
-// # define ZONE_ALLOC_NB 1
 # define ZONE_ALLOC_NB 100
 
-# define SHOW_MEM_FREE_ENV_VAR "SHOW_MEM_FREE"
-# define DEBUG_ENV_VAR "FT_MALLOC_DEBUG"
-# define NOCOLOR_ENV_VAR "FT_MALLOC_NOCOLOR"
+# define HISTO_ENV_VAR "ALLOC42_HISTO"
+# define SHOW_FREE_ENV_VAR "ALLOC42_SHOW_FREE"
 
 enum	e_status
 {
@@ -52,7 +48,10 @@ typedef struct	s_zone
 	t_block		*small;
 	t_block		*large;
 	t_block		**current;
-	int			debug; // tmp
+	int			histo;
+	int			get_histo;
+	int			show_free;
+	int			get_show_free;
 	int			show_alloc_mem; //tmp
 }				t_zone;
 
@@ -78,7 +77,6 @@ size_t	get_aligned_size(size_t size, int multiple);
 int		sizeof_header(void);
 int		page_size(void);
 
-void	init_debug(void);
 
 // NON-OFFICIAL DEBUGING FUNCTION
 void	ft_putnbr2(char *s, int nbr);
@@ -114,7 +112,12 @@ void	*calloc(size_t count, size_t size);
 void	show_alloc_mem(void);
 
 /*
-** DEBUG
+** ENV VARIABLES
+*/
+void	env_var_initialization(void);
+
+/*
+** HISTO
 */
 void	malloc_input_debug(size_t size, size_t aligned_size);
 void	malloc_output_debug(t_block *b);
@@ -122,7 +125,8 @@ void	free_debug(void *ptr);
 void	realloc_input_debug(void *ptr, size_t size);
 void	realloc_free_debug(t_block *b);
 void	realloc_call_debug(void);
-void	realloc_enough_space_debug(char *new, size_t old_size, size_t new_size);
-void	realloc_output_debug(char *new, size_t old_size, size_t new_size);
+void	realloc_enough_space_debug(void);
+void	calloc_input_debug(size_t count, size_t size);
+void	calloc_call_debug(void);
 
 #endif
