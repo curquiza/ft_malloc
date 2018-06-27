@@ -14,7 +14,7 @@
 # define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?
 # define ZONE_ALLOC_NB 100
 
-# define DEBUG_ENV_VAR "ALLOC42_DEBUG"
+# define HISTO_ENV_VAR "ALLOC42_HISTO"
 # define SHOW_MEM_FREE_ENV_VAR "SHOW_MEM_FREE"
 
 enum	e_status
@@ -45,8 +45,8 @@ typedef struct	s_zone
 	t_block		*small;
 	t_block		*large;
 	t_block		**current;
-	int			debug;
-	int			get_debug;
+	int			histo;
+	int			get_histo;
 	int			show_alloc_mem; //tmp
 }				t_zone;
 

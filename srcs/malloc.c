@@ -145,12 +145,12 @@ void	*malloc(size_t size)
 		return (NULL);
 	new_size = get_aligned_size(size, 16);
 	zone_type_initialization(new_size);
-	g_zone.debug ? malloc_input_debug(size, new_size) : 0;
+	g_zone.histo ? malloc_input_debug(size, new_size) : 0;
 	alloc_b = find_or_extend(g_zone.current, new_size);
 	if (!alloc_b)
 		return (NULL);
 	allocate_block(alloc_b, new_size);
-	g_zone.debug ? malloc_output_debug(alloc_b) : 0;
+	g_zone.histo ? malloc_output_debug(alloc_b) : 0;
 	if (g_zone.show_alloc_mem == 1)
 	{
 		ft_putstr("\n");

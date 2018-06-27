@@ -30,7 +30,7 @@ static size_t display_blocks(t_block *blocks)
 			ft_putaddr((unsigned long long)end);
 			ft_putstr(" : ");
 			ft_put_sizet((size_t)(end - start));
-			if (g_zone.debug == 1)
+			if (g_zone.histo == 1)
 			{
 				ft_putstr(" octets - prev : ");
 				ft_putaddr((unsigned long long)blocks->prev);

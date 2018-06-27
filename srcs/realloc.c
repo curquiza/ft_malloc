@@ -83,10 +83,10 @@ static void	*manage_reallocation(t_block *block, size_t size)
 	enum e_type	old_type;
 
 	old_type = g_zone.type;
-	g_zone.debug ? realloc_call_debug() : 0;
+	g_zone.histo ? realloc_call_debug() : 0;
 	new = (char *)malloc(size);
 	ft_memmove(new, (char *)block + sizeof_header(), block->size);
-	g_zone.debug ? realloc_free_debug(block) : 0;
+	g_zone.histo ? realloc_free_debug(block) : 0;
 	g_zone.type = old_type;
 	free_on(block);
 	if (g_zone.show_alloc_mem == 1)
@@ -104,22 +104,22 @@ void	*realloc(void *ptr, size_t size)
 	t_block		*b;
 
 	init_debug();
-	g_zone.debug ? realloc_input_debug(ptr, size) : 0;
+	g_zone.histo ? realloc_input_debug(ptr, size) : 0;
 	if (!ptr)
 	{
-		g_zone.debug ? realloc_call_debug() : 0;
+		g_zone.histo ? realloc_call_debug() : 0;
 		return (malloc(size));
 	}
 	b = find_block(ptr);
 	if (!b)
 	{
-		g_zone.debug ? ft_putstr_fd("Fatal error : impossible to realloc this address.\n", 2) : 0;
+		g_zone.histo ? ft_putstr_fd("Fatal error : impossible to realloc this address.\n", 2) : 0;
 		return (NULL);
 	}
 	new_size = get_aligned_size(size, 16);
 	if (b->size >= new_size)
 	{
-		g_zone.debug ? realloc_enough_space_debug() : 0;
+		g_zone.histo ? realloc_enough_space_debug() : 0;
 		return (ptr);
 	}
 	return (manage_reallocation(b, new_size));

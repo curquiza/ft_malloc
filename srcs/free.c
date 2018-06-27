@@ -57,11 +57,11 @@ void	free(void *ptr)
 	init_debug();
 	if (ptr == NULL)
 		return ;
-	g_zone.debug ? free_debug(ptr) : 0;
+	g_zone.histo ? free_debug(ptr) : 0;
 	b_to_free = find_block(ptr);
 	if (!b_to_free)
 	{
-		g_zone.debug ? ft_putstr_fd("Fatal error : impossible to free this address.\n", 2) : 0;
+		g_zone.histo ? ft_putstr_fd("Fatal error : impossible to free this address.\n", 2) : 0;
 		return ;
 	}
 	free_on(b_to_free);
