@@ -122,7 +122,7 @@ void	free_debug(void *ptr);
 void	realloc_input_debug(void *ptr, size_t size);
 void	realloc_free_debug(t_block *b);
 void	realloc_call_debug(void);
-void	realloc_enough_space_debug(void);
-void	realloc_return_value_debug(char *new);
+void	realloc_enough_space_debug(char *new, size_t old_size, size_t new_size);
+void	realloc_output_debug(char *new, size_t old_size, size_t new_size);
 
 #endif

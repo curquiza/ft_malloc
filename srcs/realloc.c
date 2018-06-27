@@ -1,18 +1,40 @@
 #include "dyn_alloc.h"
 
-static void	*ft_memcpy(void *dst, const void *src, size_t n)
+// static void	*ft_memcpy(void *dst, const void *src, size_t n)
+// {
+// 	size_t			i;
+// 	unsigned char	*dst2;
+// 	unsigned char	*src2;
+//
+// 	dst2 = (unsigned char *)dst;
+// 	src2 = (unsigned char *)src;
+// 	i = 0;
+// 	while (i < n)
+// 	{
+// 		dst2[i] = src2[i];
+// 		i++;
+// 	}
+// 	return (dst);
+// }
+
+static void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t			i;
 	unsigned char	*dst2;
 	unsigned char	*src2;
 
 	dst2 = (unsigned char *)dst;
 	src2 = (unsigned char *)src;
-	i = 0;
-	while (i < n)
+	if (src < dst)
 	{
-		dst2[i] = src2[i];
-		i++;
+		src2 = src2 + len - 1;
+		dst2 = dst2 + len - 1;
+		while (len--)
+			*dst2-- = *src2--;
+	}
+	else if (src >= dst)
+	{
+		while (len--)
+			*dst2++ = *src2++;
 	}
 	return (dst);
 }
@@ -37,14 +59,15 @@ static void	*manage_reallocation(t_block *block, size_t size)
 	g_zone.debug ? realloc_call_debug() : 0;
 	new = (char *)malloc(size);
 	assert(size >= tmp_size);
-	ft_memcpy(new, tmp_data, tmp_size);
+	// ft_memcpy(new, tmp_data, tmp_size);
+	ft_memmove(new, tmp_data, tmp_size);
 	if (tmp_type == LARGE)
 	{
 		// getenv(DEBUG_ENV_VAR) ? realloc_free_debug(block) : 0;
 		g_zone.debug ? realloc_free_debug(block) : 0;
 		free_on(block);
 	}
-	g_zone.debug ? realloc_return_value_debug(new) : 0;
+	g_zone.debug ? realloc_output_debug(new, tmp_size, size) : 0;
 	if (g_zone.show_alloc_mem == 1)
 	{
 		ft_putstr("\n");
@@ -79,7 +102,7 @@ void	*realloc(void *ptr, size_t size)
 	if (b->size >= new_size)
 	{
 		// getenv(DEBUG_ENV_VAR) ? realloc_enough_space_debug() : 0;
-		g_zone.debug ? realloc_enough_space_debug() : 0;
+		g_zone.debug ? realloc_enough_space_debug(ptr, b->size, new_size) : 0;
 		return (ptr);
 	}
 	return (manage_reallocation(b, new_size));
