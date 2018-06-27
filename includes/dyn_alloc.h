@@ -9,18 +9,13 @@
 # include <assert.h> // attention
 
 # define HEXA_BASE "0123456789ABCDEF"
-# define DEF "\033[0m" // enlever
-# define B_BLUE "\x1b[1;34m" // enlever
-# define B_GREEN "\x1b[1;32m" // enlever
-# define B_YELLOW "\x1b[1;33m" // enlever
 
 # define TINY_MAX 352 // 10 pages allouées (avec headers)
 # define SMALL_MAX 4096 // 101 pages allouées (avec headers) - peut etre prendre en compte le hearder -> 4096 - header ?
 # define ZONE_ALLOC_NB 100
 
-# define SHOW_MEM_FREE_ENV_VAR "SHOW_MEM_FREE"
 # define DEBUG_ENV_VAR "ALLOC42_DEBUG"
-// # define NOCOLOR_ENV_VAR "ALLOC42_NOCOLOR"
+# define SHOW_MEM_FREE_ENV_VAR "SHOW_MEM_FREE"
 
 enum	e_status
 {
@@ -121,7 +116,6 @@ void	free_debug(void *ptr);
 void	realloc_input_debug(void *ptr, size_t size);
 void	realloc_free_debug(t_block *b);
 void	realloc_call_debug(void);
-void	realloc_enough_space_debug(char *new, size_t old_size, size_t new_size);
-void	realloc_output_debug(char *new, size_t old_size, size_t new_size);
+void	realloc_enough_space_debug(void);
 
 #endif
