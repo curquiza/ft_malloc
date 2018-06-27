@@ -89,12 +89,12 @@ static void	*manage_reallocation(t_block *block, size_t size)
 	g_zone.histo ? realloc_free_debug(block) : 0;
 	g_zone.type = old_type;
 	free_on(block);
-	if (g_zone.show_alloc_mem == 1)
-	{
-		ft_putstr("\n");
-		show_alloc_mem();
-		ft_putstr("\n");
-	}
+	if (g_zone.show_alloc_mem == 1) //debug
+	{ //debug
+		ft_putstr("\n"); //debug
+		show_alloc_mem(); //debug
+		ft_putstr("\n"); //debug
+	} //debug
 	return (new);
 }
 

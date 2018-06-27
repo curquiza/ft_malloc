@@ -5,7 +5,6 @@ size_t	get_aligned_size(size_t size, int multiple)
 	if (size == 0)
 		return (multiple);
 	return ((size - 1) / multiple * multiple + multiple);
-	// return ((((size - 1) >> 4) << 4) + 16);
 }
 
 int		sizeof_header(void)
