@@ -20,7 +20,7 @@ static t_block	*extend_heap(size_t size, t_block *previous)
 
 	mmap_size = get_extend_size(size);
 	b = mmap(0, mmap_size, PROT_READ | PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
-	if (!b)
+	if (b == MAP_FAILED)
 		return (NULL);
 	b->status = FREE;
 	b->size = mmap_size - sizeof_header();
