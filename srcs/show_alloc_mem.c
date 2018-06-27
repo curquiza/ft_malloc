@@ -4,14 +4,16 @@ static void	show_status(t_block *b)
 {
 	if (b->status == ALLOC)
 		ft_putstr("alloc\t");
-	else
+	else if (b->status == FREE)
 		ft_putstr("free\t");
+	else
+		ft_putstr("KO\t");
 }
 
 static size_t display_blocks(t_block *blocks)
 {
-	unsigned long long	start;
-	unsigned long long	end;
+	char	*start;
+	char	*end;
 	size_t				total;
 
 	total = 0;
@@ -19,17 +21,29 @@ static size_t display_blocks(t_block *blocks)
 	{
 		// if (blocks->status == ALLOC || getenv(SHOW_MEM_FREE_ENV_VAR))
 		// {
-			start = (unsigned long long)blocks + sizeof_header();
-			end = (unsigned long long)blocks + sizeof_header() + blocks->size;
+			start = (char *)blocks + sizeof_header();
+			end = (char *)blocks + sizeof_header() + blocks->size;
 			// getenv(SHOW_MEM_FREE_ENV_VAR) ? show_status(blocks) : 0;
 			show_status(blocks);
-			ft_putaddr(start);
+			ft_putaddr((unsigned long long)start);
 			ft_putstr(" - ");
-			ft_putaddr(end);
+			ft_putaddr((unsigned long long)end);
 			ft_putstr(" : ");
 			ft_put_sizet((size_t)(end - start));
-			ft_putendl(" octets");
-			total += (size_t)(end - start);
+			if (g_zone.debug == 1)
+			{
+				ft_putstr(" octets - prev : ");
+				ft_putaddr((unsigned long long)blocks->prev);
+				ft_putstr(" - next : ");
+				ft_putaddr((unsigned long long)blocks->next);
+				ft_putstr(" - block : ");
+				ft_putaddr((unsigned long long)blocks);
+				ft_putendl("");
+			}
+			else
+				ft_putendl(" octets");
+			if (blocks->status == ALLOC)
+				total += (size_t)(end - start);
 		// }
 		blocks = blocks->next;
 	}

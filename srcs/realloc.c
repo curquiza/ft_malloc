@@ -1,49 +1,103 @@
 #include "dyn_alloc.h"
 
-static void	*ft_memcpy(void *dst, const void *src, size_t n)
+// static void	*ft_memcpy(void *dst, const void *src, size_t n)
+// {
+// 	size_t			i;
+// 	unsigned char	*dst2;
+// 	unsigned char	*src2;
+//
+// 	dst2 = (unsigned char *)dst;
+// 	src2 = (unsigned char *)src;
+// 	i = 0;
+// 	while (i < n)
+// 	{
+// 		dst2[i] = src2[i];
+// 		i++;
+// 	}
+// 	return (dst);
+// }
+
+static void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t			i;
 	unsigned char	*dst2;
 	unsigned char	*src2;
 
 	dst2 = (unsigned char *)dst;
 	src2 = (unsigned char *)src;
-	i = 0;
-	while (i < n)
+	if (src < dst)
 	{
-		dst2[i] = src2[i];
-		i++;
+		src2 = src2 + len - 1;
+		dst2 = dst2 + len - 1;
+		while (len--)
+			*dst2-- = *src2--;
+	}
+	else if (src >= dst)
+	{
+		while (len--)
+			*dst2++ = *src2++;
 	}
 	return (dst);
 }
 
-static t_block	*manage_reallocation(t_block *block, size_t size)
-{
-	t_block		*new;
-	size_t		tmp_size;
-	char *		tmp_data;
-	enum e_type	tmp_type;
+// static void	*manage_reallocation(t_block *block, size_t size)
+// {
+// 	char		*new;
+// 	size_t		tmp_size;
+// 	char 		*tmp_data;
+// 	enum e_type	tmp_type;
+//
+// 	tmp_size = block->size;
+// 	tmp_data = (char *)block + sizeof_header();
+// 	tmp_type = g_zone.type;
+// 	if (tmp_type != LARGE)
+// 	{
+// 		// getenv(DEBUG_ENV_VAR) ? realloc_free_debug(block) : 0;
+// 		g_zone.debug ? realloc_free_debug(block) : 0;
+// 		free_on(block);
+// 	}
+// 	// getenv(DEBUG_ENV_VAR) ? realloc_call_debug() : 0;
+// 	g_zone.debug ? realloc_call_debug() : 0;
+// 	new = (char *)malloc(size);
+// 	assert(size >= tmp_size);
+// 	// ft_memcpy(new, tmp_data, tmp_size);
+// 	ft_memmove(new, tmp_data, tmp_size);
+// 	if (tmp_type == LARGE)
+// 	{
+// 		// getenv(DEBUG_ENV_VAR) ? realloc_free_debug(block) : 0;
+// 		g_zone.debug ? realloc_free_debug(block) : 0;
+// 		free_on(block);
+// 	}
+// 	g_zone.debug ? realloc_output_debug(new, tmp_size, size) : 0;
+// 	if (g_zone.show_alloc_mem == 1)
+// 	{
+// 		ft_putstr("\n");
+// 		show_alloc_mem();
+// 		ft_putstr("\n");
+// 	}
+// 	return (new);
+// }
 
-	tmp_size = block->size;
-	tmp_data = (char *)block + sizeof_header();
-	tmp_type = g_zone.type;
-	if (tmp_type != LARGE)
-	{
-		// getenv(DEBUG_ENV_VAR) ? realloc_free_debug(block) : 0;
-		// g_zone.debug ? realloc_free_debug(block) : 0;
-		free_on(block);
-	}
+static void	*manage_reallocation(t_block *block, size_t size)
+{
+	char		*new;
+	enum e_type	old_type;
+
 	// getenv(DEBUG_ENV_VAR) ? realloc_call_debug() : 0;
-	// g_zone.debug ? realloc_call_debug() : 0;
-	new = malloc(size);
-	new = (t_block *)((char *)new - sizeof_header());
-	if (new != block)
-		ft_memcpy((char *)new + sizeof_header(), tmp_data, tmp_size);
-	if (tmp_type == LARGE)
+	old_type = g_zone.type;
+	g_zone.debug ? realloc_call_debug() : 0;
+	new = (char *)malloc(size);
+	// ft_memcpy(new, tmp_data, tmp_size);
+	ft_memmove(new, (char *)block + sizeof_header(), block->size);
+	// getenv(DEBUG_ENV_VAR) ? realloc_free_debug(block) : 0;
+	g_zone.debug ? realloc_free_debug(block) : 0;
+	g_zone.type = old_type;
+	free_on(block);
+	// g_zone.debug ? realloc_output_debug(new, block->size, size) : 0;
+	if (g_zone.show_alloc_mem == 1)
 	{
-		// getenv(DEBUG_ENV_VAR) ? realloc_free_debug(block) : 0;
-		// g_zone.debug ? realloc_free_debug(block) : 0;
-		free_on(block);
+		ft_putstr("\n");
+		show_alloc_mem();
+		ft_putstr("\n");
 	}
 	return (new);
 }
@@ -52,40 +106,29 @@ void	*realloc(void *ptr, size_t size)
 {
 	size_t		new_size;
 	t_block		*b;
-	t_block		*new_b;
 
-	g_zone.debug = "1";
+	init_debug();
 	// getenv(DEBUG_ENV_VAR) ? realloc_input_debug(ptr, size) : 0;
-	// g_zone.debug ? realloc_input_debug(ptr, size) : 0;
+	g_zone.debug ? realloc_input_debug(ptr, size) : 0;
 	if (!ptr)
 	{
 		// getenv(DEBUG_ENV_VAR) ? realloc_call_debug() : 0;
-		// g_zone.debug ? realloc_call_debug() : 0;
+		g_zone.debug ? realloc_call_debug() : 0;
 		return (malloc(size));
 	}
 	b = find_block(ptr);
 	if (!b)
 	{
-		// ft_putstr_fd("Fatal error : impossible to realloc this address.\n", 2); // debug
-		// ft_putstr("\n");
-		// show_alloc_mem();
-		// ft_putstr("\n");
-		// return (NULL);
-		return (ptr);
+		g_zone.debug ? ft_putstr_fd("Fatal error : impossible to realloc this address.\n", 2) : 0;
+		return (NULL);
+		// return (ptr);
 	}
 	new_size = get_aligned_size(size, 16);
 	if (b->size >= new_size)
 	{
 		// getenv(DEBUG_ENV_VAR) ? realloc_enough_space_debug() : 0;
-		// g_zone.debug ? realloc_enough_space_debug() : 0;
-		// ft_putstr("\n");
-		// show_alloc_mem();
-		// ft_putstr("\n");
+		g_zone.debug ? realloc_enough_space_debug(ptr, b->size, new_size) : 0;
 		return (ptr);
 	}
-	new_b = manage_reallocation(b, new_size);
-	// ft_putstr("\n");
-	// show_alloc_mem();
-	// ft_putstr("\n");
-	return ((char *)new_b + sizeof_header());
+	return (manage_reallocation(b, new_size));
 }

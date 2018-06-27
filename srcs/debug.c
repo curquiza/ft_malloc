@@ -62,8 +62,27 @@ void	realloc_free_debug(t_block *b)
 	free_debug((char *)b + sizeof_header());
 }
 
-void	realloc_enough_space_debug(void)
+static void	realloc_rslt_debug(char *new, size_t old_size, size_t new_size)
+{
+	ft_putstr("sizes : ");
+	ft_put_sizet(old_size);
+	ft_putstr(" -> ");
+	ft_put_sizet(new_size);
+	ft_putstr(" - ");
+	ft_putstr("return value = ");
+	ft_putaddr((unsigned long long)new);
+	ft_putstr("\n");
+}
+
+void	realloc_enough_space_debug(char *new, size_t old_size, size_t new_size)
 {
 	realloc_call_debug();
-	ft_putstr_fd("enough space\n", 2);
+	ft_putstr("ENOUGH SPACE - ");
+	realloc_rslt_debug(new, old_size, new_size);
+}
+
+void	realloc_output_debug(char *new, size_t old_size, size_t new_size)
+{
+	realloc_call_debug();
+	realloc_rslt_debug(new, old_size, new_size);
 }

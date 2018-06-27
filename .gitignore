@@ -13,3 +13,4 @@ libft_malloc.so
 **/test5
 .vscode
 log
+**/*.dSYM
