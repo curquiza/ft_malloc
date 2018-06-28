@@ -91,6 +91,7 @@ t_block					*find_block(void *ptr);
 /*
 ** MALLOC
 */
+t_block					*find_or_extend(t_block **blocks, size_t size);
 void					*malloc(size_t size);
 
 /*
