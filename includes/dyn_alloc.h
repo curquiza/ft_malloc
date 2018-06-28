@@ -53,7 +53,6 @@ typedef struct	s_zone
 	int			get_histo;
 	int			show_free;
 	int			get_show_free;
-	int			show_alloc_mem; //tmp
 }				t_zone;
 
 t_zone					g_zone;

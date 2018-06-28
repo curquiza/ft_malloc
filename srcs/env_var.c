@@ -12,5 +12,4 @@ void	env_var_initialization(void)
 		g_zone.get_show_free = 1;
 		g_zone.show_free = getenv(SHOW_FREE_ENV_VAR) ? 1 : 0;
 	}
-	g_zone.show_alloc_mem = 0; //debug
 }

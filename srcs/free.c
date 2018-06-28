@@ -44,12 +44,6 @@ void	free_on(t_block *block)
 			merge_free_blocks(left, block);
 	}
 	pthread_mutex_unlock(&g_mutex);
-	if (g_zone.show_alloc_mem == 1) //debug
-	{ //debug
-		ft_putstr("\n"); //debug
-		show_alloc_mem(); //debug
-		ft_putstr("\n"); //debug
-	} //debug
 }
 
 void	free(void *ptr)

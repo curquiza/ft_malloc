@@ -1,52 +1,5 @@
 #include "dyn_alloc.h"
 
-// static void	show_status(t_block *b)
-// {
-// 	if (b->status == ALLOC)
-// 		ft_putstr("alloc\t");
-// 	else
-// 		ft_putstr("alloc\t");
-// }
-
-// static size_t display_blocks(t_block *blocks)
-// {
-// 	char	*start;
-// 	char	*end;
-// 	size_t				total;
-
-// 	total = 0;
-// 	while (blocks)
-// 	{
-// 		// if (blocks->status == ALLOC || getenv(SHOW_MEM_FREE_ENV_VAR))
-// 		// {
-// 			start = (char *)blocks + sizeof_header();
-// 			end = (char *)blocks + sizeof_header() + blocks->size;
-// 			show_status(blocks);
-// 			ft_putaddr((unsigned long long)start);
-// 			ft_putstr(" - ");
-// 			ft_putaddr((unsigned long long)end);
-// 			ft_putstr(" : ");
-// 			ft_put_sizet((size_t)(end - start));
-// 			if (g_zone.histo == 1) //debug
-// 			{ //debug
-// 				ft_putstr(" octets - prev : "); //debug
-// 				ft_putaddr((unsigned long long)blocks->prev); //debug
-// 				ft_putstr(" - next : "); //debug
-// 				ft_putaddr((unsigned long long)blocks->next); //debug
-// 				ft_putstr(" - block : "); //debug
-// 				ft_putaddr((unsigned long long)blocks); //debug
-// 				ft_putendl(""); //debug
-// 			} //debug
-// 			else //debug
-// 				ft_putendl(" octets");
-// 			if (blocks->status == ALLOC)
-// 				total += (size_t)(end - start);
-// 		// }
-// 		blocks = blocks->next;
-// 	}
-// 	return (total);
-// }
-
 static size_t display_blocks(t_block *blocks)
 {
 	char	*start;

@@ -153,11 +153,5 @@ void	*malloc(size_t size)
 	allocate_block(alloc_b, new_size);
 	pthread_mutex_unlock(&g_mutex);
 	g_zone.histo ? malloc_output_debug(alloc_b) : 0;
-	if (g_zone.show_alloc_mem == 1) //debug
-	{ //debug
-		ft_putstr("\n"); //debug
-		show_alloc_mem(); //debug
-		ft_putstr("\n"); //debug
-	} //debug
 	return ((char *)alloc_b + sizeof_header());
 }
