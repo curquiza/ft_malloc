@@ -22,6 +22,7 @@ void	free_on(t_block *block)
 	t_block	*left;
 	t_block	*right;
 
+	pthread_mutex_lock(&g_mutex);
 	block->status = FREE;
 	left = block->prev;
 	right = block->next;
@@ -42,6 +43,7 @@ void	free_on(t_block *block)
 		if (left && left->status == FREE)
 			merge_free_blocks(left, block);
 	}
+	pthread_mutex_unlock(&g_mutex);
 	if (g_zone.show_alloc_mem == 1) //debug
 	{ //debug
 		ft_putstr("\n"); //debug

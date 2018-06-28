@@ -7,6 +7,7 @@
 # include <stdbool.h>
 # include <stdlib.h> // attention ?
 # include <assert.h> // attention
+#include <pthread.h>
 
 # define HEXA_BASE "0123456789ABCDEF"
 
@@ -55,7 +56,8 @@ typedef struct	s_zone
 	int			show_alloc_mem; //tmp
 }				t_zone;
 
-t_zone	g_zone;
+t_zone					g_zone;
+static pthread_mutex_t	g_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 /*
 ** TOOLS

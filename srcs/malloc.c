@@ -143,6 +143,7 @@ void	*malloc(size_t size)
 	env_var_initialization();
 	if ((int)size < 0)
 		return (NULL);
+	pthread_mutex_lock(&g_mutex);
 	new_size = get_aligned_size(size, 16);
 	zone_type_initialization(new_size);
 	g_zone.histo ? malloc_input_debug(size, new_size) : 0;
@@ -150,6 +151,7 @@ void	*malloc(size_t size)
 	if (!alloc_b)
 		return (NULL);
 	allocate_block(alloc_b, new_size);
+	pthread_mutex_unlock(&g_mutex);
 	g_zone.histo ? malloc_output_debug(alloc_b) : 0;
 	if (g_zone.show_alloc_mem == 1) //debug
 	{ //debug
