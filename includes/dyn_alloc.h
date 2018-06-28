@@ -107,11 +107,6 @@ void	*realloc(void *ptr, size_t size);
 void	*calloc(size_t count, size_t size);
 
 /*
-** SHOW ALLOC MEM
-*/
-void	show_alloc_mem(void);
-
-/*
 ** ENV VARIABLES
 */
 void	env_var_initialization(void);
@@ -133,5 +128,11 @@ void	calloc_call_debug(void);
 ** HEX DUMP
 */
 void	hex_dump(void *addr, size_t size);
+
+/*
+** SHOW ALLOC MEM
+*/
+void	show_alloc_mem(void);
+void	show_alloc_mem_hex(void);
 
 #endif

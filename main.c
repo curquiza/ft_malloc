@@ -246,6 +246,58 @@ void	test_hex_dump3(void)
 	hex_dump(a, 8);
 }
 
+// static size_t		ft_strlen(const char *s)
+// {
+// 	int		cpt;
+
+// 	cpt = -1;
+// 	while (s[++cpt])
+// 		;
+// 	return (cpt);
+// }
+
+static char	*ft_strnew(size_t size)
+{
+	char	*str;
+
+	if (!(str = (char *)malloc(sizeof(*str) * (size + 1))))
+		exit(1);
+	str[size] = '\0';
+	while (size--)
+		str[size] = '\0';
+	return (str);
+}
+
+static char	*ft_strdup(const char *src)
+{
+	int		i;
+	char	*str;
+	int		len;
+
+	len = ft_strlen(src);
+	str = ft_strnew(len);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = src[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+void	test_alloc_mem_hex(void)
+{
+	char	*a;
+
+	ft_strdup("ciao les nazes !\n");
+	a = ft_strdup("je vais free cette partie !\n");
+	ft_strdup("je ne sais pas quoi ecrire !\n");
+	free(a);
+	ft_putstr("\n");
+	show_alloc_mem_hex();
+}
+
 int		main(void)
 {
 	// test_only_malloc();
@@ -264,11 +316,14 @@ int		main(void)
 	// test_defragm3();
 	// test_defragm4();
 
-	test_hex_dump1();
-	ft_putstr("\n");
-	test_hex_dump2();
+	// test_hex_dump1();
+	// ft_putstr("\n");
+	// test_hex_dump2();
 	// ft_putstr("\n");
 	// test_hex_dump3();
 
+	test_alloc_mem_hex();
+
+	// show_alloc_mem_hex();
 	return (0);
 }

@@ -23,6 +23,7 @@ C_FILES = $(addprefix $(C_DIR)/, \
 			hex_dump.c \
 			find_block.c \
 			show_alloc_mem.c \
+			show_alloc_mem_hex.c \
 			realloc.c \
 			free.c \
 			calloc.c \
