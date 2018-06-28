@@ -1,4 +1,5 @@
 #include "dyn_alloc.h"
+#include <stdio.h>
 
 void	*malloc_basic_test(size_t size)
 {
@@ -246,15 +247,15 @@ void	test_hex_dump3(void)
 	hex_dump(a, 8);
 }
 
-// static size_t		ft_strlen(const char *s)
-// {
-// 	int		cpt;
+static size_t		ft_strlen(const char *s)
+{
+	int		cpt;
 
-// 	cpt = -1;
-// 	while (s[++cpt])
-// 		;
-// 	return (cpt);
-// }
+	cpt = -1;
+	while (s[++cpt])
+		;
+	return (cpt);
+}
 
 static char	*ft_strnew(size_t size)
 {
@@ -298,9 +299,25 @@ void	test_alloc_mem_hex(void)
 	show_alloc_mem_hex();
 }
 
+void	fuck_tests(void)
+{
+	char	*a;
+	char	*b;
+	char	*fuck;
+
+	fuck = malloc(-1);
+	a = malloc(0);
+	fuck = realloc(a, -123);
+	b = realloc(a, 0);
+	fuck = calloc(-2, -2);
+	fuck = calloc(0, 200);
+	ft_putstr("\n");
+	show_alloc_mem();
+}
+
 int		main(void)
 {
-	// test_only_malloc();
+	test_only_malloc();
 	// ft_putstr("\n");
 	// test_malloc_free();
 	// test_malloc_free2();
@@ -322,8 +339,10 @@ int		main(void)
 	// ft_putstr("\n");
 	// test_hex_dump3();
 
-	test_alloc_mem_hex();
+	// test_alloc_mem_hex();
 
 	// show_alloc_mem_hex();
+
+	// fuck_tests();
 	return (0);
 }

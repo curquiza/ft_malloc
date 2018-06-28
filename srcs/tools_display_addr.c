@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools_display_addr.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <curquiza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/28 19:50:43 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/28 19:50:45 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dyn_alloc.h"
 
 void	ft_putaddr(unsigned long long int n)
@@ -26,11 +38,4 @@ void	ft_putaddr_fd(unsigned long long int n, int fd)
 		ft_putaddr_fd(n / 16, fd);
 		ft_putchar_fd(HEXA_BASE[n % 16], fd);
 	}
-}
-
-void	ft_putaddr2(char *s, unsigned long long int n) // non-official
-{
-	ft_putstr(s);
-	ft_putaddr(n);
-	ft_putstr("\n");
 }

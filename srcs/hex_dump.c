@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hex_dump.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <curquiza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/28 19:46:20 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/28 19:47:14 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dyn_alloc.h"
 
 static void	ft_putbyte_hex(unsigned char c)
@@ -23,7 +35,7 @@ static void	write_hexa(void *addr, size_t remaining_size)
 static void	write_ascii(void *addr, size_t remaining_size)
 {
 	size_t			i;
-	unsigned char 	c;
+	unsigned char	c;
 
 	i = 0;
 	while (i < 16 && i < remaining_size)
@@ -57,7 +69,7 @@ static void	write_one_line(void *addr, size_t remaining_size)
 	ft_putchar('\n');
 }
 
-void	hex_dump(void *addr, size_t size)
+void		hex_dump(void *addr, size_t size)
 {
 	size_t	i;
 

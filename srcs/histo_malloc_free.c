@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   histo_malloc_free.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <curquiza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/28 19:47:39 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/28 19:47:50 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dyn_alloc.h"
 
 static void	put_type(void)
@@ -10,7 +22,7 @@ static void	put_type(void)
 		ft_putstr_fd(" LARGE", 2);
 }
 
-void	malloc_input_debug(size_t size, size_t aligned_size)
+void		malloc_input_debug(size_t size, size_t aligned_size)
 {
 	ft_putstr_fd("MALLOC", 2);
 	put_type();
@@ -20,14 +32,14 @@ void	malloc_input_debug(size_t size, size_t aligned_size)
 	ft_putnbr_fd(aligned_size, 2);
 }
 
-void	malloc_output_debug(t_block *b)
+void		malloc_output_debug(t_block *b)
 {
 	ft_putstr_fd(" - data address : ", 2);
 	ft_putaddr_fd((unsigned long long)((char *)b + sizeof_header()), 2);
 	ft_putstr_fd("\n", 2);
 }
 
-void	free_debug(void *ptr)
+void		free_debug(void *ptr)
 {
 	ft_putstr_fd("FREE", 2);
 	ft_putstr_fd("\t\tinput address : ", 2);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools_display_nbr.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <curquiza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/28 19:50:55 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/28 19:50:55 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dyn_alloc.h"
 
 void		ft_putnbr(int n)
@@ -47,11 +59,4 @@ void		ft_put_sizet(size_t n)
 		ft_put_sizet(n / 10);
 		ft_putchar(n % 10 + '0');
 	}
-}
-
-void		ft_putnbr2(char *s, int nbr) // non-official
-{
-	ft_putstr(s);
-	ft_putnbr(nbr);
-	ft_putstr("\n");
 }
