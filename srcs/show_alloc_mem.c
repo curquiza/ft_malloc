@@ -92,6 +92,7 @@ void	show_alloc_mem(void)
 {
 	size_t		total;
 
+	pthread_mutex_lock(&g_mutex);
 	total = 0;
 	ft_putstr("TINY : ");
 	display_zone(g_zone.tiny, &total);
@@ -102,4 +103,5 @@ void	show_alloc_mem(void)
 	ft_putstr("Total : ");
 	ft_put_sizet(total);
 	ft_putendl(" octets");
+	pthread_mutex_unlock(&g_mutex);
 }

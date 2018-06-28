@@ -15,6 +15,7 @@ t_block	*find_block(void *ptr)
 {
 	t_block		*block;
 
+	pthread_mutex_lock(&g_mutex);
 	block = look_for_addr_on(g_zone.large, ptr);
 	if (block == NULL)
 	{
@@ -23,7 +24,10 @@ t_block	*find_block(void *ptr)
 		{
 			block = look_for_addr_on(g_zone.tiny, ptr);
 			if (block == NULL)
+			{
+				pthread_mutex_unlock(&g_mutex);
 				return (NULL);
+			}
 			g_zone.type = TINY;
 		}
 		else
@@ -31,5 +35,6 @@ t_block	*find_block(void *ptr)
 	}
 	else
 		g_zone.type = LARGE;
+	pthread_mutex_unlock(&g_mutex);
 	return (block);
 }

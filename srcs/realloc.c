@@ -82,12 +82,16 @@ static void	*manage_reallocation(t_block *block, size_t size)
 	char		*new;
 	enum e_type	old_type;
 
+	pthread_mutex_lock(&g_mutex);
 	old_type = g_zone.type;
 	g_zone.histo ? realloc_call_debug() : 0;
+	pthread_mutex_unlock(&g_mutex);
 	new = (char *)malloc(size);
+	pthread_mutex_lock(&g_mutex);
 	ft_memmove(new, (char *)block + sizeof_header(), block->size);
 	g_zone.histo ? realloc_free_debug(block) : 0;
 	g_zone.type = old_type;
+	pthread_mutex_unlock(&g_mutex);
 	free_on(block);
 	if (g_zone.show_alloc_mem == 1) //debug
 	{ //debug
