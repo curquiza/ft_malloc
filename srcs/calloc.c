@@ -29,6 +29,8 @@ void		*calloc(size_t count, size_t size)
 	void	*alloc;
 
 	env_var_initialization();
+	if ((int)count < 0 || (int)size < 0)
+		return (NULL);
 	g_zone.histo ? calloc_input_debug(count, size) : 0;
 	g_zone.histo ? calloc_call_debug() : 0;
 	alloc = malloc(count * size);
