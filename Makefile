@@ -13,15 +13,17 @@ C_FILES = $(addprefix $(C_DIR)/, \
 			tools_display_char.c \
 			tools_display_nbr.c \
 			tools_display_str.c \
-			tools_display_hexa.c \
+			tools_display_addr.c \
 			tools_str.c \
 			tools_basics.c \
 			env_var.c \
 			histo_malloc_free.c \
 			histo_realloc.c \
 			histo_calloc.c \
+			hex_dump.c \
 			find_block.c \
 			show_alloc_mem.c \
+			show_alloc_mem_hex.c \
 			realloc.c \
 			free.c \
 			calloc.c \

@@ -77,6 +77,7 @@ size_t	get_aligned_size(size_t size, int multiple);
 int		sizeof_header(void);
 int		page_size(void);
 
+t_block	*find_block(void *ptr);
 
 // NON-OFFICIAL DEBUGING FUNCTION
 void	ft_putnbr2(char *s, int nbr);
@@ -92,7 +93,6 @@ void	*malloc(size_t size);
 /*
 ** FREE
 */
-t_block	*find_block(void *ptr);
 void	free_on(t_block *block);
 void	free(void *ptr);
 
@@ -105,11 +105,6 @@ void	*realloc(void *ptr, size_t size);
 ** CALLOC
 */
 void	*calloc(size_t count, size_t size);
-
-/*
-** SHOW ALLOC MEM
-*/
-void	show_alloc_mem(void);
 
 /*
 ** ENV VARIABLES
@@ -128,5 +123,16 @@ void	realloc_call_debug(void);
 void	realloc_enough_space_debug(void);
 void	calloc_input_debug(size_t count, size_t size);
 void	calloc_call_debug(void);
+
+/*
+** HEX DUMP
+*/
+void	hex_dump(void *addr, size_t size);
+
+/*
+** SHOW ALLOC MEM
+*/
+void	show_alloc_mem(void);
+void	show_alloc_mem_hex(void);
 
 #endif
