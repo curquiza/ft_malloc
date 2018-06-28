@@ -42,7 +42,7 @@ static void	write_one_line(void *addr, size_t remaining_size)
 	int		i;
 
 	ft_putaddr((unsigned long long)addr);
-	ft_putstr(": ");
+	ft_putstr(" : ");
 	write_hexa(addr, remaining_size);
 	if (remaining_size >= 16)
 		i = 16 * 3 - 1;

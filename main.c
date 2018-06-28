@@ -267,8 +267,8 @@ int		main(void)
 	test_hex_dump1();
 	ft_putstr("\n");
 	test_hex_dump2();
-	ft_putstr("\n");
-	test_hex_dump3();
+	// ft_putstr("\n");
+	// test_hex_dump3();
 
 	return (0);
 }

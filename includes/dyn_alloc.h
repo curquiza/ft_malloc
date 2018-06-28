@@ -77,6 +77,7 @@ size_t	get_aligned_size(size_t size, int multiple);
 int		sizeof_header(void);
 int		page_size(void);
 
+t_block	*find_block(void *ptr);
 
 // NON-OFFICIAL DEBUGING FUNCTION
 void	ft_putnbr2(char *s, int nbr);
@@ -92,7 +93,6 @@ void	*malloc(size_t size);
 /*
 ** FREE
 */
-t_block	*find_block(void *ptr);
 void	free_on(t_block *block);
 void	free(void *ptr);
 
