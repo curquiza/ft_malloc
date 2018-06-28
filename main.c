@@ -317,7 +317,7 @@ void	fuck_tests(void)
 
 int		main(void)
 {
-	// test_only_malloc();
+	test_only_malloc();
 	// ft_putstr("\n");
 	// test_malloc_free();
 	// test_malloc_free2();
@@ -343,6 +343,6 @@ int		main(void)
 
 	// show_alloc_mem_hex();
 
-	fuck_tests();
+	// fuck_tests();
 	return (0);
 }
