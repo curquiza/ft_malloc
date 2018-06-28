@@ -1,13 +1,11 @@
 #ifndef DYN_ALLOC_H
 # define DYN_ALLOC_H
 
-# include <unistd.h> // attention
+# include <unistd.h>
 # include <sys/mman.h>
-# include <stdio.h> // attention
 # include <stdbool.h>
-# include <stdlib.h> // attention ?
-# include <assert.h> // attention
-#include <pthread.h>
+# include <stdlib.h>
+# include <pthread.h>
 
 # define HEXA_BASE "0123456789ABCDEF"
 
@@ -72,19 +70,11 @@ void	ft_putendl(char const *s);
 void	ft_putaddr(unsigned long long int n);
 void	ft_putaddr_fd(unsigned long long int n, int fd);
 
-size_t	ft_strlen(const char *s);
-
 size_t	get_aligned_size(size_t size, int multiple);
 int		sizeof_header(void);
 int		page_size(void);
 
 t_block	*find_block(void *ptr);
-
-// NON-OFFICIAL DEBUGING FUNCTION
-void	ft_putnbr2(char *s, int nbr);
-void	ft_putendl2(char *s1, char *s2);
-void	ft_putaddr2(char *s, unsigned long long int n);
-// void	ft_putendl2_fd(char *s1, char *s2, int fd);
 
 /*
 ** MALLOC

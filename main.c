@@ -246,15 +246,15 @@ void	test_hex_dump3(void)
 	hex_dump(a, 8);
 }
 
-// static size_t		ft_strlen(const char *s)
-// {
-// 	int		cpt;
+static size_t		ft_strlen(const char *s)
+{
+	int		cpt;
 
-// 	cpt = -1;
-// 	while (s[++cpt])
-// 		;
-// 	return (cpt);
-// }
+	cpt = -1;
+	while (s[++cpt])
+		;
+	return (cpt);
+}
 
 static char	*ft_strnew(size_t size)
 {

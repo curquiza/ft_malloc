@@ -1,5 +1,15 @@
 #include "dyn_alloc.h"
 
+static size_t		ft_strlen(const char *s)
+{
+	int		cpt;
+
+	cpt = -1;
+	while (s[++cpt])
+		;
+	return (cpt);
+}
+
 void	ft_putstr(char const *s)
 {
 	if (s)
@@ -19,18 +29,4 @@ void	ft_putendl(char const *s)
 		write(1, s, ft_strlen(s));
 		write(1, "\n", 1);
 	}
-}
-
-void	ft_putendl2(char *s1, char *s2) // non-official
-{
-	ft_putstr(s1);
-	ft_putstr(s2);
-	write(1, "\n", 1);
-}
-
-void	ft_putendl2_fd(char *s1, char *s2, int fd) // non-official
-{
-	ft_putstr_fd(s1, fd);
-	ft_putstr_fd(s2, fd);
-	write(fd, "\n", 1);
 }

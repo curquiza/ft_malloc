@@ -6,7 +6,6 @@ NAME = libft_malloc_$(HOSTTYPE).so
 LINK_NAME = libft_malloc.so
 
 CC = gcc -Wall -Wextra -Werror -g
-# CC = gcc -Wall -Wextra -Werror -g -fsanitize=address
 
 C_DIR = srcs
 C_FILES = $(addprefix $(C_DIR)/, \
@@ -14,7 +13,6 @@ C_FILES = $(addprefix $(C_DIR)/, \
 			tools_display_nbr.c \
 			tools_display_str.c \
 			tools_display_addr.c \
-			tools_str.c \
 			tools_basics.c \
 			env_var.c \
 			histo_malloc_free.c \

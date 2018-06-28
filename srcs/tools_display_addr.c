@@ -27,10 +27,3 @@ void	ft_putaddr_fd(unsigned long long int n, int fd)
 		ft_putchar_fd(HEXA_BASE[n % 16], fd);
 	}
 }
-
-void	ft_putaddr2(char *s, unsigned long long int n) // non-official
-{
-	ft_putstr(s);
-	ft_putaddr(n);
-	ft_putstr("\n");
-}

@@ -48,10 +48,3 @@ void		ft_put_sizet(size_t n)
 		ft_putchar(n % 10 + '0');
 	}
 }
-
-void		ft_putnbr2(char *s, int nbr) // non-official
-{
-	ft_putstr(s);
-	ft_putnbr(nbr);
-	ft_putstr("\n");
-}
