@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_block.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <curquiza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/28 19:45:15 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/28 19:45:23 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dyn_alloc.h"
 
 static t_block	*look_for_addr_on(t_block *blocks, void *ptr)
@@ -11,7 +23,7 @@ static t_block	*look_for_addr_on(t_block *blocks, void *ptr)
 	return (NULL);
 }
 
-t_block	*find_block(void *ptr)
+t_block			*find_block(void *ptr)
 {
 	t_block		*block;
 

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   show_alloc_mem.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <curquiza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/28 19:49:21 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/28 19:49:58 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dyn_alloc.h"
 
-static size_t display_blocks(t_block *blocks)
+static size_t	display_blocks(t_block *blocks)
 {
 	char	*start;
 	char	*end;
@@ -29,7 +41,7 @@ static size_t display_blocks(t_block *blocks)
 	return (total);
 }
 
-static void	display_zone(t_block *blocks, size_t *total)
+static void		display_zone(t_block *blocks, size_t *total)
 {
 	if (blocks == NULL)
 		ft_putendl("NONE");
@@ -41,7 +53,7 @@ static void	display_zone(t_block *blocks, size_t *total)
 	}
 }
 
-void	show_alloc_mem(void)
+void			show_alloc_mem(void)
 {
 	size_t		total;
 

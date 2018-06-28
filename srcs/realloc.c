@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   realloc.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <curquiza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/28 19:48:14 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/28 19:48:23 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dyn_alloc.h"
 
 static void	*ft_memmove(void *dst, const void *src, size_t len)
@@ -41,7 +53,7 @@ static void	*manage_reallocation(t_block *block, size_t size)
 	return (new);
 }
 
-void	*realloc(void *ptr, size_t size)
+void		*realloc(void *ptr, size_t size)
 {
 	size_t		new_size;
 	t_block		*b;

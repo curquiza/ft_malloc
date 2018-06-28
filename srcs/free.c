@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <curquiza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/28 19:45:40 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/28 19:45:51 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dyn_alloc.h"
 
 static void	merge_free_blocks(t_block *b1, t_block *b2)
@@ -17,7 +29,7 @@ static void	merge_free_blocks(t_block *b1, t_block *b2)
 	}
 }
 
-void	free_on(t_block *block)
+void		free_on(t_block *block)
 {
 	t_block	*left;
 	t_block	*right;
@@ -46,7 +58,7 @@ void	free_on(t_block *block)
 	pthread_mutex_unlock(&g_mutex);
 }
 
-void	free(void *ptr)
+void		free(void *ptr)
 {
 	t_block		*b_to_free;
 

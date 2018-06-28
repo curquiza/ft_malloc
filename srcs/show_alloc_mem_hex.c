@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   show_alloc_mem_hex.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: curquiza <curquiza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/28 19:50:06 by curquiza          #+#    #+#             */
+/*   Updated: 2018/06/28 19:50:29 by curquiza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "dyn_alloc.h"
 
 static void	display_zone(t_block *block)
@@ -18,7 +30,7 @@ static void	display_zone(t_block *block)
 		ft_putstr("No allocation in this type of zone\n");
 }
 
-void	show_alloc_mem_hex(void)
+void		show_alloc_mem_hex(void)
 {
 	pthread_mutex_lock(&g_mutex);
 	ft_putstr("--- TINY ------------------------------\n");
