@@ -12,6 +12,8 @@
 
 #include "dyn_alloc.h"
 
+pthread_mutex_t	g_mutex = PTHREAD_MUTEX_INITIALIZER;
+
 static t_block	*split_block(t_block *block, size_t size)
 {
 	t_block		*new_block;

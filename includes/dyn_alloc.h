@@ -66,7 +66,7 @@ typedef struct			s_zone
 }						t_zone;
 
 t_zone					g_zone;
-static pthread_mutex_t	g_mutex = PTHREAD_MUTEX_INITIALIZER;
+extern pthread_mutex_t	g_mutex;
 
 /*
 ** TOOLS

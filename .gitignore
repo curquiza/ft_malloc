@@ -14,3 +14,4 @@ libft_malloc.so
 .vscode
 log
 **/*.dSYM
+**/mutex
